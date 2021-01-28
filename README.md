@@ -1,9 +1,9 @@
 # Chess
 
  > Authors: \<[Chun Ho Wong](https://github.com/cwong165)\>\
- > Authors: \<[Jared Tanuwidjaja](https://github.com/matchasaur)\>\  
+ > Authors: \<[Jared Tanuwidjaja](https://github.com/matchasaur)\>  
  > Authors: \<[Danial Mirza](https://github.com/danialmirza99)\> \
- > Authors: \<[Francisco Quiroz](https://github.com/FrankyQuiroz01)\>\
+ > Authors: \<[Francisco Quiroz](https://github.com/FrankyQuiroz01)\>
 
 
 **Description**\
@@ -32,7 +32,7 @@ Not only that, we would also love to include A.I. in which we will have the comp
 
 **References:**
 https://en.wikipedia.org/wiki/Chess \
-https://en.wikipedia.org/wiki/Chess_symbols_in_Unicode \
+https://en.wikipedia.org/wiki/Chess_symbols_in_Unicode
 
  
 
