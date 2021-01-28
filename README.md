@@ -5,24 +5,24 @@
  > Authors: \<[Danial Mirza](https://github.com/danialmirza99)\>
  > Authors: \<[Francisco Quiroz](https://github.com/FrankyQuiroz01)\>
 
- The Project itself is interesting because it will not be a straightforward chess game, in the sense that we are required to have boards that are saved in case we ever want to hold off the game to a later date in which we would continue the game. 
+The Project itself is interesting because it will not be a straightforward chess game, in the sense that we are required to have boards that are saved in case we ever want to hold off the game to a later date in which we would continue the game. 
 
 Not only that, we would also love to include A.I. in which we will have the computer be our opponent. This means we at the minimum must have an A.I. smart enough to recognize that (1), a move is possible, and (2) the importance of the king to prolong the game so that it does not end quickly. This is slightly more challenging and may be subject to change.
 
  > Languages/Tools/technologies
  >  * C++
  >  * GUI (TBD)
-
+ >
  > Input/output
- >  *Keyboard
- >  *Mouse(optional)
- >  *Monitor
- >  *Speaker(optional)
-
-
-
-
-
+ >  -Keyboard
+ >  -Mouse(optional)
+ >  -Monitor
+ >  -Speaker(optional)
+ >
+ >
+ >
+ >
+ >
 
  > ## Phase II
  > In addition to completing the "Class Diagram" section below, you will need to 
