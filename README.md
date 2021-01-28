@@ -1,12 +1,12 @@
 # Chess
 
- > Authors: \<[Chun Ho Wong](https://github.com/cwong165)\>
- > Authors: \<[Jared Tanuwidjaja](https://github.com/matchasaur)\>  
- > Authors: \<[Danial Mirza](https://github.com/danialmirza99)\>
- > Authors: \<[Francisco Quiroz](https://github.com/FrankyQuiroz01)\>
+ > Authors: \<[Chun Ho Wong](https://github.com/cwong165)\>\
+ > Authors: \<[Jared Tanuwidjaja](https://github.com/matchasaur)\>\  
+ > Authors: \<[Danial Mirza](https://github.com/danialmirza99)\> \
+ > Authors: \<[Francisco Quiroz](https://github.com/FrankyQuiroz01)\>\
 
 
-**Description**
+**Description**\
 The Project itself is interesting because it will not be a straightforward chess game, in the sense that we are required to have boards that are saved in case we ever want to hold off the game to a later date in which we would continue the game. 
 
 Not only that, we would also love to include A.I. in which we will have the computer be our opponent. This means we at the minimum must have an A.I. smart enough to recognize that (1), a move is possible, and (2) the importance of the king to prolong the game so that it does not end quickly. This is slightly more challenging and may be subject to change.
@@ -22,17 +22,17 @@ Not only that, we would also love to include A.I. in which we will have the comp
  > * Monitor
  > * Speaker(optional) 
 
-**Design Patterns **
- * Prototype (Creational Pattern)
-  * We chose this pattern to allow for prototypes of the chess game itself. This will allow us to test individual pieces and how they move, without the need of a fully developed class for y piece when we are testing x piece. This will be especially useful as we have 7 unique chess pieces. Not only that, we will be able to find issues in a single class much earlier than if we had fully developed all classes which saves us a large amount of time. This will further help us understand how the classes interact with each other and if any problems occur, when a prototype of the final project itself is made.
- * Strategy (Behavioral Pattern)
-  * We chose this pattern because it will allow us to implement movement for each unique piece while maintaining organization and avoiding redundant code. Chess has six unique pieces, each with different movement patterns. Utilizing the Strategy pattern would allow us to construct a base ChessPiece class and divide each movement algorithm into separate strategies. This will allow us to reuse code if a chess piece shares a movement pattern identical to a different chess piece.
+**Design Patterns**
+ - Prototype (Creational Pattern)
+    - We chose this pattern to allow for prototypes of the chess game itself. This will allow us to test individual pieces and how they move, without the need of a fully developed class for y piece when we are testing x piece. This will be especially useful as we have 7 unique chess pieces. Not only that, we will be able to find issues in a single class much earlier than if we had fully developed all classes which saves us a large amount of time. This will further help us understand how the classes interact with each other and if any problems occur, when a prototype of the final project itself is made.
+ - Strategy (Behavioral Pattern)
+    - We chose this pattern because it will allow us to implement movement for each unique piece while maintaining organization and avoiding redundant code. Chess has six unique pieces, each with different movement patterns. Utilizing the Strategy pattern would allow us to construct a base ChessPiece class and divide each movement algorithm into separate strategies. This will allow us to reuse code if a chess piece shares a movement pattern identical to a different chess piece.
 
 
 
 **References:**
-https://en.wikipedia.org/wiki/Chess
-https://en.wikipedia.org/wiki/Chess_symbols_in_Unicode
+https://en.wikipedia.org/wiki/Chess \
+https://en.wikipedia.org/wiki/Chess_symbols_in_Unicode \
 
  
 
