@@ -9,21 +9,22 @@ The Project itself is interesting because it will not be a straightforward chess
 
 Not only that, we would also love to include A.I. in which we will have the computer be our opponent. This means we at the minimum must have an A.I. smart enough to recognize that (1), a move is possible, and (2) the importance of the king to prolong the game so that it does not end quickly. This is slightly more challenging and may be subject to change.
 
- > Languages/Tools/technologies
+Languages/Tools/technologies
  >  * C++
- >  * GUI (TBD)
- >
- > Input/output
- >  -Keyboard
- >  -Mouse(optional)
- >  -Monitor
- >  -Speaker(optional)
- >
- >
- >
- >
- >
+ >  * GUI (TBD)<br />
 
+
+Input/output
+ >  _Keyboard
+ >  _Mouse(optional)
+ >  _Monitor
+ >  _Speaker(optional)
+ >
+ >
+ >
+ >
+ >
+ ><br />
  > ## Phase II
  > In addition to completing the "Class Diagram" section below, you will need to 
  > * Set up your GitHub project board as a Kanban board for the project. It should have columns that map roughly to 
