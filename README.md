@@ -1,6 +1,6 @@
 # Chess
 
- > Authors: 
+ > Authors:\ 
  > \<[Chun Ho Wong](https://github.com/cwong165)\>\
  > \<[Jared Tanuwidjaja](https://github.com/matchasaur)\>  
  > \<[Danial Mirza](https://github.com/danialmirza99)\> \
@@ -42,11 +42,11 @@ https://en.wikipedia.org/wiki/Chess_symbols_in_Unicode
 \
 \
 \
- \
+\
 
 
 
-><br />
+
  > ## Phase II
  > In addition to completing the "Class Diagram" section below, you will need to 
  > * Set up your GitHub project board as a Kanban board for the project. It should have columns that map roughly to 
