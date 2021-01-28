@@ -1,6 +1,7 @@
 # Chess
 
- > Authors: \<[Chun Ho Wong](https://github.com/cwong165)\>\
+ > Authors: 
+ > \<[Chun Ho Wong](https://github.com/cwong165)\>\
  > \<[Jared Tanuwidjaja](https://github.com/matchasaur)\>  
  > \<[Danial Mirza](https://github.com/danialmirza99)\> \
  > \<[Francisco Quiroz](https://github.com/FrankyQuiroz01)\>
