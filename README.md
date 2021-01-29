@@ -1,13 +1,13 @@
 
 # Chess  :chess_pawn:
 
- > Authors: (names listed in alphabetical order)
+ > Authors: (names listed in alphabetical order)<br />
 [Chun Ho Wong](https://github.com/cwong165) :space_invader:  <br />
 [Danial Mirza](https://github.com/danialmirza99) :ghost: <br />
 [Francisco Quiroz](https://github.com/FrankyQuiroz01) :japanese_goblin: <br />
 [Jared Tanuwidjaja](https://github.com/matchasaur) :speech_balloon: <br />
  
-
+<br />
 
 **Description**:video_game:
 
