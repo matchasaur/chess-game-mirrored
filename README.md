@@ -32,15 +32,19 @@ Not only that, we would also love to include A.I. in which we will have the comp
 
 **Design Patterns**:speech_balloon:
  - Prototype (Creational Pattern)
-    - We chose this pattern to allow for prototypes of the chess game itself. This will allow us to test individual pieces and how they move, without the need of a fully developed class for y piece when we are testing x piece. This will be especially useful as we have 7 unique chess pieces. Not only that, we will be able to find issues in a single class much earlier than if we had fully developed all classes which saves us a large amount of time. This will further help us understand how the classes interact with each other and if any problems occur, when a prototype of the final project itself is made.
- - Strategy (Behavioral Pattern)
+   - We chose this pattern to allow for prototypes of the chess game itself. This will allow us to test individual pieces and how they move, without the need of a fully developed class for y piece when we are testing x piece. This will be especially useful as we have 7 unique chess pieces. Not only that, we will be able to find issues in a single class much earlier than if we had fully developed all classes which saves us a large amount of time. This will further help us understand how the classes interact with each other and if any problems occur, when a prototype of the final project itself is made.
+      * We expect that some of our individual pieces will have issues regarding the rules of their movement, i.e. the pawn moves forward and can only move diagonally to take a piece. By making a copy of the class and running it, we may be able to see if it absolutely obeys these rules or if it breaks under specific circumstances. Another thing we can do is make a copy that implements multiple of our classes to see how they interact with each other. If any problems occur or worse our program crashes, we will be able to see it on a prototype and fix it on the main product.
+         * Prototype will allow us to make a copy of our code in certain stages that we want or will be critical to the overall project. This way we will be able to tell if our code can execute up to this point, or if it breaks. If it breaks then we know the code has an issue somewhere before this point that does not allow the program to execute correctly. If we want to be extremely direct we can also copy each bit of code and make a prototype for each individual function and that will serve as our unit tests for the program and not just the code.
+ 
+- Strategy (Behavioral Pattern)
     - We chose this pattern because it will allow us to implement movement for each unique piece while maintaining organization and avoiding redundant code. Chess has six unique pieces, each with different movement patterns. Utilizing the Strategy pattern would allow us to construct a base ChessPiece class and divide each movement algorithm into separate strategies. This will allow us to reuse code if a chess piece shares a movement pattern identical to a different chess piece.
+        
 
 
 
 **References:**\
-https://en.wikipedia.org/wiki/Chess
-https://en.wikipedia.org/wiki/Chess_symbols_in_Unicode
+https://en.wikipedia.org/wiki/Chess  <br />
+https://en.wikipedia.org/wiki/Chess_symbols_in_Unicode  <br />
 
  
 
