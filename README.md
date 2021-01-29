@@ -2,11 +2,11 @@
 # Chess  :chess_pawn:
 
  > Authors: (names listed in alphabetical order)
-[Chun Ho Wong](https://github.com/cwong165) :space_invader:
-[Danial Mirza](https://github.com/danialmirza99) :ghost:
-[Francisco Quiroz](https://github.com/FrankyQuiroz01) :japanese_goblin:
-[Jared Tanuwidjaja](https://github.com/matchasaur) :speech_balloon:
-
+[Chun Ho Wong](https://github.com/cwong165) :space_invader:  <br />
+[Danial Mirza](https://github.com/danialmirza99) :ghost: <br />
+[Francisco Quiroz](https://github.com/FrankyQuiroz01) :japanese_goblin: <br />
+[Jared Tanuwidjaja](https://github.com/matchasaur) :speech_balloon: <br />
+ 
 
 
 **Description**:video_game:
