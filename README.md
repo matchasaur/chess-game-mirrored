@@ -3,46 +3,85 @@
 
  > Authors: (names listed in alphabetical order)<br />
 [Chun Ho Wong](https://github.com/cwong165) :space_invader:  <br />
-[Danial Mirza](https://github.com/danialmirza99) :ghost: <br />
+[Danial Mirza](https://github.com/danialmirza99) :wolf: <br />
 [Francisco Quiroz](https://github.com/FrankyQuiroz01) :japanese_goblin: <br />
 [Jared Tanuwidjaja](https://github.com/matchasaur) :speech_balloon: <br />
  
 <br />
 
-**Description**:video_game:
+**Project Description (Phase 1):**:video_game:
 
 The Project itself is interesting because it will not be a straightforward chess game, in the sense that we are required to have boards that are saved in case we ever want to hold off the game to a later date in which we would continue the game. 
 
 Not only that, we would also love to include A.I. in which we will have the computer be our opponent. This means we at the minimum must have an A.I. smart enough to recognize that
- - (1) A move is possible
- - (2) The importance of the king to prolong the game so that it does not end quickly
+ - (1) A move is possible 🚶
+ - (2) The importance of the king to prolong the game so that it does not end quickly 👑
 
 *This is slightly more challenging and may be subject to change.*
 <br />
 
-**Languages/Tools/technologies**:man_technologist:
+**Languages/Tools/technologies**🧰
  >  * C++
 
 
-**Input/output**:robot:
- > * Keyboard
- > * Mouse(optional)
- > * Monitor
- > * Speaker(optional) 
+**Input/output**:robot: 
+ > * Keyboard⌨
+ > * Mouse(optional)🖱
+ > * Monitor💻
+ > * Speaker(optional)🔊
 
-**Design Patterns**:speech_balloon:
- - Prototype (Creational Pattern)
-   - We chose this pattern to allow for prototypes of the chess game itself. This will allow us to test individual pieces and how they move, without the need of a fully developed class for y piece when we are testing x piece. This will be especially useful as we have 7 unique chess pieces. Not only that, we will be able to find issues in a single class much earlier than if we had fully developed all classes which saves us a large amount of time. This will further help us understand how the classes interact with each other and if any problems occur, when a prototype of the final project itself is made.
-      * We expect that some of our individual pieces will have issues regarding the rules of their movement, i.e. the pawn moves forward and can only move diagonally to take a piece. By making a copy of the class and running it, we may be able to see if it absolutely obeys these rules or if it breaks under specific circumstances. Another thing we can do is make a copy that implements multiple of our classes to see how they interact with each other. If any problems occur or worse our program crashes, we will be able to see it on a prototype and fix it on the main product.
-         * Prototype will allow us to make a copy of our code in certain stages that we want or will be critical to the overall project. This way we will be able to tell if our code can execute up to this point, or if it breaks. If it breaks then we know the code has an issue somewhere before this point that does not allow the program to execute correctly. If we want to be extremely direct we can also copy each bit of code and make a prototype for each individual function and that will serve as our unit tests for the program and not just the code.
+**Design Patterns**🔋
+
+
+>[**Strategy (Behavioral Pattern)**](https://refactoring.guru/design-patterns/strategy) :speech_balloon:
+
+- Why you picked this pattern and what feature you will implement with it?
+   
+  -  **We chose this pattern because it will allow us to implement a movement for each unique piece while maintaining organization and avoiding redundant code.**
+    
+
+-   What problem you anticipate encountering when implementing your project that you will solve using the design pattern?
+    
+
+    -  **Chess has six unique pieces, each with different movement patterns. Since we are not chess masters, It would not be easy to implement all the possible patterns and rules for chess in one go.**
+    
+
+-   Why the chosen design pattern will lead to a good solution to that problem?
+    
+
+    -   **Utilizing the Strategy pattern would allow us to construct a base ChessPiece class and divide each movement algorithm into separate strategies. This will allow us to reuse code if a chess piece shares a movement pattern identical to a different chess piece and preferably create AI player base on the same set of algorithms**
+
+>[**Builder(Creational Pattern)**](https://refactoring.guru/design-patterns/builder) :speech_balloon:
+
+- Why you picked this pattern and what feature you will implement with it?
+   
+  -  **We chose this pattern to allow us to test individual pieces and how they move, without the need of a fully developed class for every piece when we are testing x piece. This will be especially useful as we have 7 unique chess pieces.**
+    
+
+-   What problem you anticipate encountering when implementing your project that you will solve using the design pattern?
+    
+
+    - **We expect that some of our individual pieces will have issues regarding the rules of their movement, i.e. the pawn moves forward and can only move diagonally to take a piece. By making by building the piece as an independent object we may be able to see if it absolutely obeys these rules or if it breaks under specific circumstances**
+    
+
+-   Why the chosen design pattern will lead to a good solution to that problem?
+    
+
+    -  **Builder will allow us to make test specifics of our code in certain stages that we want or will be critical to the overall project. This way we will be able to tell if our code can execute up to this point, or if it breaks, and if it is an individual piece causing it.**
+
+
+ <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
  
-- Strategy (Behavioral Pattern)
-    - We chose this pattern because it will allow us to implement movement for each unique piece while maintaining organization and avoiding redundant code. Chess has six unique pieces, each with different movement patterns. Utilizing the Strategy pattern would allow us to construct a base ChessPiece class and divide each movement algorithm into separate strategies. This will allow us to reuse code if a chess piece shares a movement pattern identical to a different chess piece.
-        
-
-
-
 **References:**\
+https://refactoring.guru/<br />
 https://en.wikipedia.org/wiki/Chess  <br />
 https://en.wikipedia.org/wiki/Chess_symbols_in_Unicode  <br />
 
