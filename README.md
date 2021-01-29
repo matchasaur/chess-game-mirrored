@@ -5,19 +5,21 @@
 [Chun Ho Wong](https://github.com/cwong165) :space_invader:  <br />
 [Danial Mirza](https://github.com/danialmirza99) :wolf: <br />
 [Francisco Quiroz](https://github.com/FrankyQuiroz01) :japanese_goblin: <br />
-[Jared Tanuwidjaja](https://github.com/matchasaur) :speech_balloon: <br />
+[Jared Tanuwidjaja](https://github.com/matchasaur) 🏄 <br />
  
 <br />
 
 **Project Description (Phase 1):**:video_game:
 
-The Project itself is interesting because it will not be a straightforward chess game, in the sense that we are required to have boards that are saved in case we ever want to hold off the game to a later date in which we would continue the game. 
+--The Project itself is interesting because it will not be a straightforward chess game, in the sense that we are required to have boards that are saved in case we ever want to hold off the game to a later date in which we would continue the game. 
 
-Not only that, we would also love to include A.I. in which we will have the computer be our opponent. This means we at the minimum must have an A.I. smart enough to recognize that
+--Not only that, we would also love to include A.I. in which we will have the computer be our opponent. This means we at the minimum must have an A.I. smart enough to recognize that
  - (1) A move is possible 🚶
  - (2) The importance of the king to prolong the game so that it does not end quickly 👑
 
-*This is slightly more challenging and may be subject to change.*
+>*This is slightly more challenging and may be subject to change.*
+
+
 <br />
 
 **Languages/Tools/technologies**🧰
@@ -26,9 +28,9 @@ Not only that, we would also love to include A.I. in which we will have the comp
 
 **Input/output**:robot: 
  > * Keyboard⌨
- > * Mouse(optional)🖱
+ > * Mouse(*optional*)🖱
  > * Monitor💻
- > * Speaker(optional)🔊
+ > * Speaker(*optional*)🔊
 
 **Design Patterns**🔋
 
@@ -49,9 +51,9 @@ Not only that, we would also love to include A.I. in which we will have the comp
 -   Why the chosen design pattern will lead to a good solution to that problem?
     
 
-    -   **Utilizing the Strategy pattern would allow us to construct a base ChessPiece class and divide each movement algorithm into separate strategies. This will allow us to reuse code if a chess piece shares a movement pattern identical to a different chess piece and preferably create AI player base on the same set of algorithms**
+    -   **Utilizing the Strategy pattern would allow us to construct a base ChessPiece class and divide each movement algorithm into separate strategies. This will allow us to reuse code if a chess piece shares a movement pattern identical to a different chess piece and preferably create AI player base on the same set of algorithms.**
 
->[**Builder(Creational Pattern)**](https://refactoring.guru/design-patterns/builder) :speech_balloon:
+>[**Builder (Creational Pattern)**](https://refactoring.guru/design-patterns/builder) :speech_balloon:
 
 - Why you picked this pattern and what feature you will implement with it?
    
@@ -61,13 +63,13 @@ Not only that, we would also love to include A.I. in which we will have the comp
 -   What problem you anticipate encountering when implementing your project that you will solve using the design pattern?
     
 
-    - **We expect that some of our individual pieces will have issues regarding the rules of their movement, i.e. the pawn moves forward and can only move diagonally to take a piece. By making by building the piece as an independent object we may be able to see if it absolutely obeys these rules or if it breaks under specific circumstances**
+    - **We expect that some of our individual pieces will have issues regarding the rules of their movement, i.e. the pawn moves forward and can only move diagonally to take a piece. By making by building the piece as an independent object we may be able to see if it absolutely obeys these rules or if it breaks under specific circumstances.**
     
 
 -   Why the chosen design pattern will lead to a good solution to that problem?
     
 
-    -  **Builder will allow us to make test specifics of our code in certain stages that we want or will be critical to the overall project. This way we will be able to tell if our code can execute up to this point, or if it breaks, and if it is an individual piece causing it.**
+    -  **Builder will allow us to make test specifics of our code in certain stages that we want or will be critical to the overall project. This way we will be able to tell if our code can execute up to this point, or if it breaks, and if it is an individual piece causing it.** 
 
 
  <br />
@@ -91,7 +93,7 @@ https://en.wikipedia.org/wiki/Chess_symbols_in_Unicode  <br />
 
 
 
-**__________________________________________________________________________________________________________________**
+**____________________________________________________________________________________________________________________**
 <br />
 <br />
 <br />
