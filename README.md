@@ -81,7 +81,7 @@
 
 
  <br />
-**Class Description:**
+###Class Description:###
 
 -In this program, there is a class named Game. In the Game class, both players, the start and end time, game progress, and vector are established. Game Class also aggregates the three classes spot, board, and move which together initialize the board, determine locations, and check the validity of moves. The Board list inherits from the game class and will be the class that manages the save and load functions of our program. It saves the board in a vector of boards when saved, can delete all games, and load a specific board.
 
