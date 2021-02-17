@@ -1,4 +1,5 @@
-![CHESS!UPLOAD](https://github.com/cs100/final-project-dmirz001-jtanu002-fquir007-cwong165-1/issues/11#issuecomment-780311777)
+![CHESS! Logo2](https://user-images.githubusercontent.com/77028662/108160872-c65c1800-709e-11eb-93f6-fb7f7576280d.png)
+
 
 # Chess  :chess_pawn:
 
