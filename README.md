@@ -9,6 +9,7 @@
  
 <br />
 
+## Phase I
 **Project Description (Phase 1):**:video_game:
 
 --The Project itself is interesting because it will not be a straightforward chess game, in the sense that we are required to have boards that are saved in case we ever want to hold off the game to a later date in which we would continue the game. 
@@ -73,7 +74,7 @@
 
 
 ## Phase II
- ## Class Diagram
+## Class Diagram
 ![Final Project 2_16 - UML Class](https://user-images.githubusercontent.com/77028662/108159935-e985c800-709c-11eb-88be-f719e1cff974.jpeg)
 
 
