@@ -53,23 +53,23 @@
 
     -   **Utilizing the Strategy pattern would allow us to construct a base ChessPiece class and divide each movement algorithm into separate strategies. This will allow us to reuse code if a chess piece shares a movement pattern identical to a different chess piece and preferably create AI player base on the same set of algorithms.**
 
-[**Builder (Creational Pattern)**](https://refactoring.guru/design-patterns/builder) :speech_balloon:
+[**Composite Pattern**] :speech_balloon:
 
 - Why you picked this pattern and what feature you will implement with it?
    
-  -  **We chose this pattern to allow us to test individual pieces and how they move, without the need of a fully developed class for every piece when we are testing x piece. This will be especially useful as we have 7 unique chess pieces.**
+  -  **We want to be able to keep track of players’ information instead of just having them play with a new account every time. Everyone who plays a game with you would automatically become your friend. And being friends with each other, the win rates information is visible to the community to allows everyone is on the same page.**
     
 
 -   What problem you anticipate encountering when implementing your project that you will solve using the design pattern?
     
 
-    - **We expect that some of our individual pieces will have issues regarding the rules of their movement, i.e. the pawn moves forward and can only move diagonally to take a piece. By making by building the piece as an independent object we may be able to see if it absolutely obeys these rules or if it breaks under specific circumstances.**
+    - **When storing a vector with string in the player object, it is rather difficult to keep track of those players’ current win rates, and updated win rates. We want the player can view their friend’s dynamic information including their win rates.**
     
 
 -   Why the chosen design pattern will lead to a good solution to that problem?
     
 
-    -  **Builder will allow us to make test specifics of our code in certain stages that we want or will be critical to the overall project. This way we will be able to tell if our code can execute up to this point, or if it breaks, and if it is an individual piece causing it.** 
+    -  **By using the composite pattern, we are able to store a pointer* vector of player object inside each player. That allows us to dynamically calculate the win rates of every player in the friend list. Alone you can compare if you are improving by seeing how other players improve their win rates.** 
 
 
  <br />
