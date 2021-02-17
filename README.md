@@ -1,3 +1,4 @@
+![CHESS!UPLOAD](https://user-images.githubusercontent.com/77028662/108160222-86e0fc00-709d-11eb-8512-31fe7f9d16f4.png)
 
 # Chess  :chess_pawn:
 
