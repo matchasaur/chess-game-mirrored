@@ -1,4 +1,4 @@
-![CHESS!UPLOAD](https://user-images.githubusercontent.com/77028662/108160222-86e0fc00-709d-11eb-8512-31fe7f9d16f4.png)
+![CHESS!UPLOAD](https://github.com/cs100/final-project-dmirz001-jtanu002-fquir007-cwong165-1/issues/11#issuecomment-780311777)
 
 # Chess  :chess_pawn:
 
@@ -76,7 +76,8 @@
 
 ## Phase II
 ## Class Diagram
-![Final Project 2_16 - UML Class (1)](https://user-images.githubusercontent.com/77028662/108160613-3c13b400-709e-11eb-8562-7ab58a28c7c9.png)
+![Final Project 2_16 - UML Class](https://user-images.githubusercontent.com/77028662/108160690-69606200-709e-11eb-8370-bd66602bf4e0.jpeg)
+
 
 
 
