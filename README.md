@@ -1,7 +1,7 @@
 
 # Chess  :chess_pawn:
 
- > Authors: (names listed in alphabetical order)<br />
+  Authors: (names listed in alphabetical order)<br />
 [Chun Ho Wong](https://github.com/cwong165) :space_invader:  <br />
 [Danial Mirza](https://github.com/danialmirza99) :wolf: <br />
 [Francisco Quiroz](https://github.com/FrankyQuiroz01) :japanese_goblin: <br />
@@ -17,25 +17,25 @@
  - (1) A move is possible 🚶
  - (2) The importance of the king to prolong the game so that it does not end quickly 👑
 
->*This is slightly more challenging and may be subject to change.*
+*This is slightly more challenging and may be subject to change.*
 
 
 <br />
 
 **Languages/Tools/technologies**🧰
- >  * C++
+   * C++
 
 
 **Input/output**:robot: 
- > * Keyboard⌨
- > * Mouse(*optional*)🖱
- > * Monitor💻
- > * Speaker(*optional*)🔊
+  * Keyboard⌨
+  * Mouse(*optional*)🖱
+  * Monitor💻
+  * Speaker(*optional*)🔊
 
 **Design Patterns**🔋
 
 
->[**Strategy (Behavioral Pattern)**](https://refactoring.guru/design-patterns/strategy) :speech_balloon:
+[**Strategy (Behavioral Pattern)**](https://refactoring.guru/design-patterns/strategy) :speech_balloon:
 
 - Why you picked this pattern and what feature you will implement with it?
    
@@ -53,7 +53,7 @@
 
     -   **Utilizing the Strategy pattern would allow us to construct a base ChessPiece class and divide each movement algorithm into separate strategies. This will allow us to reuse code if a chess piece shares a movement pattern identical to a different chess piece and preferably create AI player base on the same set of algorithms.**
 
->[**Builder (Creational Pattern)**](https://refactoring.guru/design-patterns/builder) :speech_balloon:
+[**Builder (Creational Pattern)**](https://refactoring.guru/design-patterns/builder) :speech_balloon:
 
 - Why you picked this pattern and what feature you will implement with it?
    
