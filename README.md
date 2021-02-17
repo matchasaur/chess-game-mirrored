@@ -53,7 +53,7 @@
 
     -   **Utilizing the Strategy pattern would allow us to construct a base ChessPiece class and divide each movement algorithm into separate strategies. This will allow us to reuse code if a chess piece shares a movement pattern identical to a different chess piece and preferably create AI player base on the same set of algorithms.**
 
-[**Composite Pattern**] :speech_balloon:
+[**Composite Pattern (structural design pattern)**](https://refactoring.guru/design-patterns/composite) :speech_balloon:
 
 - Why you picked this pattern and what feature you will implement with it?
    
@@ -72,7 +72,27 @@
     -  **By using the composite pattern, we are able to store a pointer* vector of player object inside each player. That allows us to dynamically calculate the win rates of every player in the friend list. Alone you can compare if you are improving by seeing how other players improve their win rates.** 
 
 
- <br />
+ > ## Phase II
+ > In addition to completing the "Class Diagram" section below, you will need to 
+ > * Set up your GitHub project board as a Kanban board for the project. It should have columns that map roughly to 
+ >   * Backlog, TODO, In progress, In testing, Done
+ >   * You can change these or add more if you'd like, but we should be able to identify at least these.
+ > * There is no requirement for automation in the project board but feel free to explore those options.
+ > * Create an "Epic" (note) for each feature and each design pattern and assign them to the appropriate team member. Place these in the `Backlog` column
+ > * Complete your first *sprint planning* meeting to plan out the next 7 days of work.
+ >   * Create smaller development tasks as issues and assign them to team members. Place these in the `Backlog` column.
+ >   * These cards should represent roughly 7 days worth of development time for your team, taking you until your first meeting with the TA
+## Class Diagram
+ > Include a class diagram(s) for each design pattern and a description of the diagram(s). Your class diagram(s) should include all the main classes you plan for the project. This should be in sufficient detail that another group could pick up the project this point and successfully complete it. Use proper OMT notation (as discussed in the course slides). You may combine multiple design patterns into one diagram if you'd like, but it needs to be clear which portion of the diagram represents which design pattern (either in the diagram or in the description). 
+ > 
+
+
+
+
+
+
+
+  <br />
   <br />
   <br />
   <br />
@@ -90,33 +110,7 @@ https://en.wikipedia.org/wiki/Chess_symbols_in_Unicode  <br />
  
 
 
-
-
-
 **____________________________________________________________________________________________________________________**
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-
-
-
- 
- > ## Phase II
- > In addition to completing the "Class Diagram" section below, you will need to 
- > * Set up your GitHub project board as a Kanban board for the project. It should have columns that map roughly to 
- >   * Backlog, TODO, In progress, In testing, Done
- >   * You can change these or add more if you'd like, but we should be able to identify at least these.
- > * There is no requirement for automation in the project board but feel free to explore those options.
- > * Create an "Epic" (note) for each feature and each design pattern and assign them to the appropriate team member. Place these in the `Backlog` column
- > * Complete your first *sprint planning* meeting to plan out the next 7 days of work.
- >   * Create smaller development tasks as issues and assign them to team members. Place these in the `Backlog` column.
- >   * These cards should represent roughly 7 days worth of development time for your team, taking you until your first meeting with the TA
-## Class Diagram
- > Include a class diagram(s) for each design pattern and a description of the diagram(s). Your class diagram(s) should include all the main classes you plan for the project. This should be in sufficient detail that another group could pick up the project this point and successfully complete it. Use proper OMT notation (as discussed in the course slides). You may combine multiple design patterns into one diagram if you'd like, but it needs to be clear which portion of the diagram represents which design pattern (either in the diagram or in the description). 
  
  > ## Phase III
  > You will need to schedule a check-in with the TA (during lab hours or office hours). Your entire team must be present. 
