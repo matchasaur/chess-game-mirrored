@@ -77,7 +77,8 @@
 
 ## Phase II
 ## Class Diagram
-![Final Project 2_16 - UML Class](https://user-images.githubusercontent.com/77028662/108160690-69606200-709e-11eb-8370-bd66602bf4e0.jpeg)
+![Final Project 2_16 - UML Class (2)](https://user-images.githubusercontent.com/77028662/108160982-f4415c80-709e-11eb-9d24-f5c3ba7e24b0.jpeg)
+
 
 
 
