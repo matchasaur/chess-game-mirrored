@@ -4,7 +4,7 @@
 #include<set>
 #include<string>
 
-static int ID_MASK = 0;
+int Get_ID = 0;
  
 class Player{
  protected:
@@ -26,8 +26,8 @@ class Player{
      wincounter=0;
      totalgameplayed=0;
      level="BEGINER";
-     ID = ID_MASK;
-     ID_MASK++;
+     ID = Get_ID;
+     Get_ID++;
      //example call Player("JIMMY",TRUE,TURE) // PLYAER JIMMY is White side and is human    
      //example call Player("JIMMY",FALSE,FALSE) // PLYAER JIMMY is BLACK side and is AI   
    }
