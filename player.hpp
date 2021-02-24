@@ -3,6 +3,7 @@
 
 #include<set>
 #include<string>
+#include<iostream>
 
 int Get_ID = 0;
  
@@ -34,11 +35,11 @@ class Player{
 
    ~Player(){for(auto s:FriendList){delete s;}}
  
-   bool isWhiteSide(){
+   bool isWhiteSide() const {
      return whiteSide;
    }
 
-   bool isHumanPlayer(){
+   bool isHumanPlayer() const {
      return humanPlayer;
    }
 
@@ -52,12 +53,33 @@ class Player{
      old_friend->removeFriend(this);
    }
 
-   double winrate(){
+   double winrate() const {
      return ((double)wincounter/(double)totalgameplayed);
    }
 
-   int get_ID(){
+   int get_ID() const {
      return ID;
+   }
+
+   void update_level(){
+
+     if(totalgameplayed<3){level = "unranked"; std::cout<<"You'll need to complete 3 competitive matches to get your first rank."; return; }
+
+     if(winrate()<0.5){level = "Silver Elite Master";}
+     else if(winrate()<0.6){level = "Gold Nova Master";}
+     else if(winrate()<0.7){level = "Distinguished Master Guardian";}
+     else if(winrate()<0.8){level = "Legendary Eagle Master";}
+     else if(winrate()<0.9){level = "Supreme Master First Class";}
+     else {level = "The Global Elite";}
+
+     return;
+   }
+
+   void print_status(){
+     std::cout<<"Player " << name << " " << this->ID <<" is now " << level <<std::endl<< name <<" is a";
+     if(humanPlayer){std::cout<<"Human Player";}
+     else{std::cout<<"AI Player";}
+     std::cout<<"with a winrate of " << winrate() << " in " << totalgameplayed << " games." << std::endl;
    }
  
 };
@@ -68,18 +90,22 @@ class HumanPlayer : public Player{
    std::string password;
 
   public:
-    bool log_in(std::string a){
+    bool log_in(std::string a) const {
       if(a == password){return true;}
       return false;
     }
+
 };
 
 
 class AI : public Player{
 
   public:
-    // FIX ME implement special functions
+    bool cheatenable(){return true;}
+    bool cheat_instant_max_level_true(){totalgameplayed=100; wincounter=100; update_level(); return true;}
+    bool cheat_instant_min_level_true(){totalgameplayed=100; wincounter=0; update_level(); return true;}
 };
+
 
  
  
