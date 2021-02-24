@@ -4,12 +4,14 @@
 #include<iostream>
 #include<map>
 #include<list>
+#include "game.hpp"
+#include "piece.hpp"
 
 class Board{
-	std::map<char, int> boxes;
+	int box[8][8];
 public:
 	void Board();
 	void resetBoard():
-	std::string getBox(char, int);
+	std::string getBox(int, int);
 }
 #endif
