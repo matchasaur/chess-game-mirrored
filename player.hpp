@@ -88,12 +88,37 @@ class Player{
 class HumanPlayer : public Player{
   private:
    std::string password;
+   bool log_in = false;
+   
 
   public:
-    bool log_in(std::string a) const {
-      if(a == password){return true;}
-      return false;
+    void log_in(std::string a)  {
+      if(a == password){log_in = true;}
+      log_in = false;
     }
+
+    // void Export()const{  Not too sure if it is needed. 
+    //   if (log_in!=true){cout<<"Invalid, Please Log in Again."return;}
+    //   std:string a;
+    //   a = a+ name + ID + level + wincounter + totalgameplayed;
+    //   cout<<  enptryed(a);
+    // }
+
+    string enptryed(std:string a){
+      string return_message;
+      return_message += a.size();
+      return_message += a;
+      return return_message;
+    }
+
+    // void Cheat_Load(){
+    //   std:string a;
+    //   cin >> a;
+      
+      
+    // }
+
+ 
 
 };
 
