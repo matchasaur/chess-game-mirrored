@@ -79,8 +79,18 @@ class Player{
      std::cout<<"Player " << name << " " << this->ID <<" is now " << level <<std::endl<< name <<" is a";
      if(humanPlayer){std::cout<<"Human Player";}
      else{std::cout<<"AI Player";}
-     std::cout<<"with a winrate of " << winrate() << " in " << totalgameplayed << " games." << std::endl;
+     std::cout<<"with a winrate of " << winrate() << " in " << totalgameplayed << " games.";
    }
+
+  void print_friend_status(int a){
+    for(auto s:FriendList){
+     if(s->ID == a){
+       s->print_status();
+       cout<<endl;
+       return;
+      }    
+    }
+  }
  
 };
  
