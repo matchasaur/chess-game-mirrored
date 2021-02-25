@@ -23,17 +23,16 @@ void print_rules(){
 
 int main() {
 
-  
-
   int option = 0; 
    cout << "Welcome to Chess 2077" << endl;
-
+   PrintMenu();
+  
    cin >> option;
    if(option == 1){/*Log_in()*/;}
-   if(option == 2){Game(1);}
-   if(option == 3){Game(2);}
+   if(option == 2){/*Log_in()*/;}
+   if(option == 3){/*Log_in()*/;}
    if(option == 4){print_rules();}
-   if()
+   if(option == 2077){/*Log_in()*/;}
    
 }
 
