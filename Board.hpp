@@ -12,7 +12,7 @@ class Board{
 public:
 	void Board();
 	void resetBoard():
-	std::string getBox(int, int);
+	Spot getBox(int, int);
 };
 
 class Spot{

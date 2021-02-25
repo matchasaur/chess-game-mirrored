@@ -17,6 +17,12 @@ void Board::resetBoard(){
 	boxes[1][i] = new Spot(1, i, new Pawn(true));
 	}
 	//find a way to fill in the space in between, one way is a double for loop see if you can find a more efficent way
+	for(int i = 2; i < 6; ++i){
+		for(int j = 0; j < 8; ++j){
+		boxes[i][j] = new Spot(i, j, nullptr);
+		}
+	}
+
 	for(int i = 0; i < 8; ++i){
 	boxes[6][i] = new Spot(6, i, new Pawn(false));
 	}
@@ -30,7 +36,7 @@ void Board::resetBoard(){
         boxes[7][6] = new Spot(7, 6, new Knight(false));
         boxes[7][7] = new Spot(7, 7, new Rook(false)); 
 }
-std::string Board::getBox(int a, int x){
+Spot Board::getBox(int a, int x){
 	//need to set a condition to check that the box is within the 8x8 range we expect of a board
 	return boxes[a][x];
 }
