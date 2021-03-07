@@ -20,26 +20,15 @@ class Player{
 
 
  public:
-   Player(std::string _name, bool side, bool human){
-     name=_name; 
-     whiteSide = side;
-     humanPlayer = human;
-     wincounter=0;
-     totalgameplayed=0;
-     level="BEGINER";
-     ID = Get_ID;
-     Get_ID++;
-     //example call Player("JIMMY",TRUE,TURE) // PLYAER JIMMY is White side and is human    
-     //example call Player("JIMMY",FALSE,FALSE) // PLYAER JIMMY is BLACK side and is AI   
-   }
 
-   ~Player(){for(auto s:FriendList){delete s;}}
+   virtual Player() {};    
+   virtual ~Player(){};
  
-   bool isWhiteSide() const {
+   virtual bool isWhiteSide() const {
      return whiteSide;
    }
 
-   bool isHumanPlayer() const {
+   virtual bool isHumanPlayer() const {
      return humanPlayer;
    }
 
@@ -63,7 +52,7 @@ class Player{
 
    void update_level(){
 
-     if(totalgameplayed<3){level = "unranked"; std::cout<<"You'll need to complete 3 competitive matches to get your first rank."; return; }
+     if(totalgameplayed<2){level = "unranked"; std::cout<<"You'll need to complete 2 competitive matches to get your first rank."; return; }
 
      if(winrate()<0.5){level = "Silver Elite Master";}
      else if(winrate()<0.6){level = "Gold Nova Master";}
@@ -75,14 +64,14 @@ class Player{
      return;
    }
 
-   void print_status(){
+   void print_status const(){
      std::cout<<"Player " << name << " " << this->ID <<" is now " << level <<std::endl<< name <<" is a";
      if(humanPlayer){std::cout<<"Human Player";}
      else{std::cout<<"AI Player";}
      std::cout<<"with a winrate of " << winrate() << " in " << totalgameplayed << " games.";
    }
 
-  void print_friend_status(int a){
+  void print_friend_status const (int a){
     for(auto s:FriendList){
      if(s->ID == a){
        s->print_status();
@@ -91,6 +80,8 @@ class Player{
       }    
     }
   }
+
+  virtual bool cheatenable(){}=0;
  
 };
  
@@ -102,30 +93,47 @@ class HumanPlayer : public Player{
    
 
   public:
-    void log_in(std::string a)  {
+    
+
+    HumanPlayer(std::string _name, bool side){
+     name=_name; 
+     whiteSide = side;
+     humanPlayer = true;
+     wincounter=0;
+     totalgameplayed=0;
+     level="BEGINER";
+     ID = Get_ID;
+     Get_ID++;
+  
+   }
+   ~HumanPlayer(){for(auto s:FriendList){delete s;}}
+   
+    void log_in(std::string a)const  {
       if(a == password){log_in = true;}
       log_in = false;
     }
 
-    // void Export()const{  Not too sure if it is needed. 
-    //   if (log_in!=true){cout<<"Invalid, Please Log in Again."return;}
-    //   std:string a;
-    //   a = a+ name + ID + level + wincounter + totalgameplayed;
-    //   cout<<  enptryed(a);
-    // }
-
-    string enptryed(std:string a){
+    string enptryed(std:string a)const{
       string return_message;
       return_message += a.size();
       return_message += a;
       return return_message;
     }
 
-    // void Cheat_Load(){
+    virtual bool cheatenable(){ return false; }
+
+    // void Cheat_Load() const{
     //   std:string a;
     //   cin >> a;
       
       
+    // }
+
+    // void Export()const{  Not too sure if it is needed. 
+    //   if (log_in!=true){cout<<"Invalid, Please Log in Again."return;}
+    //   std:string a;
+    //   a = a+ name + ID + level + wincounter + totalgameplayed;
+    //   cout<<  enptryed(a);
     // }
 
  
@@ -136,6 +144,19 @@ class HumanPlayer : public Player{
 class AI : public Player{
 
   public:
+
+   AI(std::string _name, bool side){
+     name=_name; 
+     whiteSide = side;
+     humanPlayer = false;
+     wincounter=0;
+     totalgameplayed=0;
+     level="BEGINER";
+     ID = Get_ID;
+     Get_ID++;
+   }
+   ~AI(){for(auto s:FriendList){delete s;}}
+
     bool cheatenable(){return true;}
     bool cheat_instant_max_level_true(){totalgameplayed=100; wincounter=100; update_level(); return true;}
     bool cheat_instant_min_level_true(){totalgameplayed=100; wincounter=0; update_level(); return true;}
