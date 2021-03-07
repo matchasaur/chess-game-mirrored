@@ -50,9 +50,17 @@ class Player{
      return ID;
    }
 
+   string get_name const{
+     return name;
+   }
+
+   string get_level const{
+     return level;
+   }
+
    void update_level(){
 
-     if(totalgameplayed<2){level = "unranked"; std::cout<<"You'll need to complete 2 competitive matches to get your first rank."; return; }
+     if(totalgameplayed<2){level = "unranked"; std::cout<<"You'll need to complete 2 competitive matches to get your first rank."; return; } //no idea if this should be print somewhere else. FIX ME!!!!
 
      if(winrate()<0.5){level = "Silver Elite Master";}
      else if(winrate()<0.6){level = "Gold Nova Master";}
@@ -108,9 +116,14 @@ class HumanPlayer : public Player{
    }
    ~HumanPlayer(){for(auto s:FriendList){delete s;}}
    
-    void log_in(std::string a)const  {
+    void log_in(std::string a) {
+      if(password.size()=0){password = a; log_in=true; return;}
       if(a == password){log_in = true;}
       log_in = false;
+    }
+
+    void check_log_in()const  {
+      return log_in;
     }
 
     string enptryed(std:string a)const{
