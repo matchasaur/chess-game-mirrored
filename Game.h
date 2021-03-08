@@ -5,13 +5,13 @@
 #ifndef _GAME_H
 #define _GAME_H
 
-enum color = {White, Black};
+enum color{White, Black};
 
 //test purposes only
 struct Player{
-    bool checkmate = 0;
+    bool checkmate = false;
     color pieces;
-    Player(color pieceColor){pieces = pieceColor;}
+    explicit Player(color pieceColor){pieces = pieceColor;}
 public:
     bool isCheckmate(){return checkmate;}
 };
@@ -30,10 +30,10 @@ public:
     //helpers
     void nextTurn() {
         if (turn == White){
-        turn == Black;
+        turn = Black;
         }
         else if (turn == Black) {
-            turn == White;
+            turn = White;
         }
     }
     void declare_win();
