@@ -38,7 +38,7 @@ class Player{
 
    virtual bool is_composit() {return false;}
 
-   virtual void print_list() {return;}
+   virtual string print_list() {return "";}
 
    virtual Player* getPlayer(string) {return this;}
 
@@ -134,13 +134,15 @@ class PlayerList : public Player{
   vector <Player*> GroupList;
 
 
-  PlayerList(string new_name,int new_player_count){name=new_name;}
+  PlayerList(string new_name){name=new_name;}
   ~PlayerList()=default  ; // FIX ME
 
   string get_group_name(){return name;}
 
 
   void add(Player* a){GroupList.push_back(a); } 
+
+  virtual bool cheatenable(){return false;}
 
   bool is_composit(){return true;}
 
@@ -155,17 +157,21 @@ class PlayerList : public Player{
      }
   }
 
-  void print_list(){
+  string print_list(){
+
+    string return_a;
     for(auto s:GroupList){
       if(s->is_composit()){
-        s->print_list();
+        return_a += s->print_list();
       }
       else{
-        s->print_status();
-        cout << endl;
+        return_a += s->print_status();
+        return_a += "\n";
       }
       
     }
+
+    return return_a;
   }
  
 };
@@ -173,6 +179,7 @@ class PlayerList : public Player{
 
 
 #endif //PLAYER_HPP
+
 
 
 

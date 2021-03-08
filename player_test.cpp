@@ -37,8 +37,57 @@ TEST(PLAYER, SIMPLETEST2)
 
 }
 
+TEST(PLAYERLIST, HarderTest1)
+{
+  HumanPlayer* a = new HumanPlayer("JIMMY",true) ;
+  ComputerPlayer* b = new ComputerPlayer("JIMMY",true) ;
+  PlayerList * Sum_List = new PlayerList("Sum_List");
+  EXPECT_EQ(false, a->is_composit());
+  EXPECT_EQ(false, b->is_composit());
+  Sum_List->add(a); Sum_List->add(b);
+  EXPECT_EQ("Player JIMMY is now BEGINER. JIMMY is a Human Player with a winrate of 0.000000 in 0 games\nPlayer JIMMY is now BEGINER. JIMMY is a Computer Player with a winrate of 0.000000 in 0 games\n",Sum_List->print_list());
+  
+}
+
+
+TEST(PLAYERLIST, HarderTest2)
+{
+  HumanPlayer* a = new HumanPlayer("JIMMY",true) ;
+  ComputerPlayer* b = new ComputerPlayer("JIMMY",true) ;
+  PlayerList * Sum_List = new PlayerList("Sum_List");
+  PlayerList * Sub_List = new PlayerList("Sub_List");
+  EXPECT_EQ(false, a->is_composit());
+  EXPECT_EQ(false, b->is_composit());
+  Sub_List->add(a); Sub_List->add(b);
+  Sum_List->add(Sub_List);
+  EXPECT_EQ("Player JIMMY is now BEGINER. JIMMY is a Human Player with a winrate of 0.000000 in 0 games\nPlayer JIMMY is now BEGINER. JIMMY is a Computer Player with a winrate of 0.000000 in 0 games\n",Sub_List->print_list());
+  EXPECT_EQ("Player JIMMY is now BEGINER. JIMMY is a Human Player with a winrate of 0.000000 in 0 games\nPlayer JIMMY is now BEGINER. JIMMY is a Computer Player with a winrate of 0.000000 in 0 games\n",Sum_List->print_list());
+  
+}
+
+TEST(PLAYERLIST, HarderTest3)
+{
+  HumanPlayer* a = new HumanPlayer("JIMMY",true) ;
+  ComputerPlayer* b = new ComputerPlayer("JIMMY",true) ;
+  PlayerList * Sum_List = new PlayerList("Sum_List");
+  PlayerList * Sub_List = new PlayerList("Sub_List");
+  PlayerList * Sub_List2 = new PlayerList("Sub_List2");
+  EXPECT_EQ(false, a->is_composit());
+  EXPECT_EQ(false, b->is_composit());
+  Sub_List->add(a); Sub_List2->add(b);
+  Sum_List->add(Sub_List);
+  Sum_List->add(Sub_List2);
+  EXPECT_EQ("Player JIMMY is now BEGINER. JIMMY is a Human Player with a winrate of 0.000000 in 0 games\nPlayer JIMMY is now BEGINER. JIMMY is a Computer Player with a winrate of 0.000000 in 0 games\n",Sum_List->print_list());
+  
+}
+
+
 
 int main(int argc, char **argv) {
 	::testing::InitGoogleTest(&argc, argv);
 	return RUN_ALL_TESTS();
 }
+
+
+
+
