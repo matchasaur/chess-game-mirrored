@@ -1,4 +1,4 @@
-fndef __BOARD_HPP__
+#ifndef __BOARD_HPP__
 #define __BOARD_HPP__
 
 #include<iostream>
@@ -32,19 +32,20 @@ public:
 	void resetBoard();
 	Spot* getBox(int, int);
     void printBoard();
-    void move(Spot* startBox, Spot* endBox);
+    void move(Board*, Spot* startBox, Spot* endBox);
 };
 class canMove{
     public:
-    virtual bool move (Spot*, Spot*) = 0;
+    virtual bool move (Board*, Spot*, Spot*) = 0;
 };
 
 class PawnMove : public canMove{
 
     canMove* help;
     public:
-        PawnMove(){}        }
-    virtual bool move(Spot* start, Spot* end){
+        PawnMove(){
+        }
+    virtual bool move(Board*, Spot* start, Spot* end){
     if(start->getPiece() == 'P'){
         if(end->getPiece() != 'P' && end->getPiece() != 'R' && end->getPiece() != 'B' && end->getPiece() != 'N' && end->getPiece() != 'Q' && end->getPiece() != 'K' && end->getPiece() != '-' ){
             if(end->getY() != start->getY() && ((end->getX() == start->getX() + 1) || (end->getX() == start->getX() - 1)) ){
@@ -79,6 +80,63 @@ class PawnMove : public canMove{
         return false;
     }
         
+};
+
+class RookMove : public canMove{
+    public:
+    RookMove(){}
+    virtual bool move(Board* yeet, Spot* start, Spot* end){
+        if(start->getPiece() == 'R'){
+            if(end->getPiece() != 'P' && end->getPiece() != 'R' && end->getPiece() != 'B' && end->getPiece() != 'N' && end->getPiece() != 'Q' && end->getPiece() != 'K' ){
+                if((start->getX() == end->getX()) && (start->getY() != end->getY())){
+                    for(int i = start->getY() + 1; i < end->getY(); ++i){
+                        if(yeet->getBox(start->getX(), i)->getPiece() != '-'){
+                            return false;
+                        }
+                    }
+                        end->setPiece(start->getPiece());
+		                start->setPiece('-');
+                        return true;
+                }
+                if((start->getY() == end->getY()) && (start->getX() != end->getX())){
+                    for(int i = start->getX() + 1; i < end->getX(); ++i){
+                       if(yeet->getBox(i, start->getY())->getPiece() != '-'){
+                            return false;
+                        }
+                    }
+                            end->setPiece(start->getPiece());
+		                    start->setPiece('-');
+                            return true;
+                }
+            }
+        }
+        if(start->getPiece() == 'r'){
+            if(end->getPiece() != 'p' && end->getPiece() != 'r' && end->getPiece() != 'b' && end->getPiece() != 'n' && end->getPiece() != 'q' && end->getPiece() != 'k' ){
+                if(start->getX() == end->getX() && start->getY() != end->getY()){
+                    for(int i = start->getY() - 1 ; i > end->getY(); --i){
+                        if(yeet->getBox(start->getX(), i)->getPiece() != '-'){
+                            return false;
+                        }
+                    }
+                            end->setPiece(start->getPiece());
+		                    start->setPiece('-');
+                            return true;
+                }
+                if(start->getY() == end->getY() && start->getX() != end->getX()){
+                    for(int i = start->getX() - 1; i > end->getX(); --i){
+                       if(yeet->getBox(i, start->getY())->getPiece() != '-'){
+                            return false;
+                        }
+                    }
+                            end->setPiece(start->getPiece());
+		                    start->setPiece('-');
+                            return true;
+                }
+            }
+        }
+
+        return false;
+    }
 };
 #endif
 

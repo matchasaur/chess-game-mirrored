@@ -1,4 +1,4 @@
-nclude "board.hpp"
+#include "board.hpp"
 #include <iostream>
 using namespace std;
 Board::Board(){
@@ -45,15 +45,20 @@ void Board::printBoard(){
 Spot* Board::getBox(int i, int j){
 	return boxes[i][j];
 }
-void Board::move(Spot* startBox, Spot* endBox){
+void Board::move(Board*, Spot* startBox, Spot* endBox){
 	Spot* start = startBox;
 	Spot* end = endBox;
 	
 	if(start->getPiece() == 'P' || start->getPiece() == 'p'){
 		canMove* shit = new PawnMove();
-		if(!shit->move(start, end)){
+		if(!shit->move(this, start, end)){
+			std::cout << "Invalid move" << endl;
+		}
+	}
+	if(start->getPiece() == 'R' || start->getPiece() == 'r'){
+		canMove* shit = new RookMove();
+		if(!shit->move(this, start, end)){
 			std::cout << "Invalid move" << endl;
 		}
 	}
 }
-
