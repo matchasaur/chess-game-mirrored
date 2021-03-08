@@ -27,7 +27,10 @@ class Player{
 
    virtual bool isHumanPlayer() const { return humanPlayer;}
 
-   double winrate() const {return ((double)wincounter/(double)totalgameplayed);}
+   double winrate() const {
+     if(totalgameplayed==0){return 0;}
+     return ((double)wincounter/(double)totalgameplayed);
+     }
 
    string get_name() const{ return name; }
 
@@ -53,11 +56,18 @@ class Player{
      return;
    }
 
-   void print_status()const{
-     std::cout<<"Player " << name << " " <<" is now " << level <<std::endl<< name <<" is a";
-     if(humanPlayer){std::cout<<"Human Player";}
-     else{std::cout<<"ComputerPlayer Player";}
-     std::cout<<"with a winrate of " << winrate() << " in " << totalgameplayed << " games->";
+   string print_status()const{
+
+    string return_string;
+     
+     return_string +="Player " + name +" is now " + level +". "+ name +" is a ";
+
+     if(humanPlayer){return_string+= "Human Player ";}
+     else{return_string += "Computer Player ";}
+
+     return_string +="with a winrate of " + to_string(winrate()) + " in " + to_string(totalgameplayed) + " games";
+
+     return return_string;
    }
 
    virtual bool cheatenable()=0;
