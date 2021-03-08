@@ -2,61 +2,36 @@
 #define PLAYER_HPP
 
 #include<set>
+#include<vector>
 #include<string>
 #include<iostream>
 
-int Get_ID = 0;
+
  
 class Player{
+
  protected:
    bool whiteSide;
    bool humanPlayer;
-   int ID;
    int wincounter;
    int totalgameplayed;
    std::string name;
    std::string level;
-   std::set<Player*> FriendList;
-
-
+ 
  public:
 
    virtual Player() {};    
    virtual ~Player(){};
  
-   virtual bool isWhiteSide() const {
-     return whiteSide;
-   }
+   virtual bool isWhiteSide() const { return whiteSide; }
 
-   virtual bool isHumanPlayer() const {
-     return humanPlayer;
-   }
+   virtual bool isHumanPlayer() const { return humanPlayer;}
 
-   void addFriend(Player* new_friend){
-     FriendList.insert(new_friend);
-     
-   }
+   double winrate() const {return ((double)wincounter/(double)totalgameplayed);}
 
-   void removeFriend(Player* old_friend){
-     FriendList.erase(old_friend);
-     old_friend->removeFriend(this);
-   }
+   string get_name const{ return name; }
 
-   double winrate() const {
-     return ((double)wincounter/(double)totalgameplayed);
-   }
-
-   int get_ID() const {
-     return ID;
-   }
-
-   string get_name const{
-     return name;
-   }
-
-   string get_level const{
-     return level;
-   }
+   string get_level const{ return level;}
 
    void update_level(){
 
@@ -75,46 +50,31 @@ class Player{
    void print_status const(){
      std::cout<<"Player " << name << " " << this->ID <<" is now " << level <<std::endl<< name <<" is a";
      if(humanPlayer){std::cout<<"Human Player";}
-     else{std::cout<<"AI Player";}
-     std::cout<<"with a winrate of " << winrate() << " in " << totalgameplayed << " games.";
+     else{std::cout<<"ComputerPlayer Player";}
+     std::cout<<"with a winrate of " << winrate() << " in " << totalgameplayed << " games->";
    }
 
-  void print_friend_status const (int a){
-    for(auto s:FriendList){
-     if(s->ID == a){
-       s->print_status();
-       cout<<endl;
-       return;
-      }    
-    }
-  }
-
-  virtual bool cheatenable(){}=0;
+   virtual bool cheatenable(){}=0;
  
 };
- 
 
 class HumanPlayer : public Player{
   private:
    std::string password;
    bool log_in = false;
    
-
   public:
     
 
-    HumanPlayer(std::string _name, bool side){
+     HumanPlayer(std::string _name, bool side){
      name=_name; 
      whiteSide = side;
      humanPlayer = true;
      wincounter=0;
      totalgameplayed=0;
      level="BEGINER";
-     ID = Get_ID;
-     Get_ID++;
-  
    }
-   ~HumanPlayer(){for(auto s:FriendList){delete s;}}
+   ~HumanPlayer(){}
    
     void log_in(std::string a) {
       if(password.size()=0){password = a; log_in=true; return;}
@@ -123,52 +83,27 @@ class HumanPlayer : public Player{
     }
 
     void check_log_in()const  {
-      return log_in;
-    }
-
-    string enptryed(std:string a)const{
-      string return_message;
-      return_message += a.size();
-      return_message += a;
-      return return_message;
-    }
+      return log_in;}
 
     virtual bool cheatenable(){ return false; }
 
-    // void Cheat_Load() const{
-    //   std:string a;
-    //   cin >> a;
-      
-      
-    // }
-
-    // void Export()const{  Not too sure if it is needed. 
-    //   if (log_in!=true){cout<<"Invalid, Please Log in Again."return;}
-    //   std:string a;
-    //   a = a+ name + ID + level + wincounter + totalgameplayed;
-    //   cout<<  enptryed(a);
-    // }
-
- 
 
 };
 
 
-class AI : public Player{
+class ComputerPlayer : public Player{
 
   public:
 
-   AI(std::string _name, bool side){
+   ComputerPlayer(std::string _name, bool side){
      name=_name; 
      whiteSide = side;
      humanPlayer = false;
      wincounter=0;
      totalgameplayed=0;
      level="BEGINER";
-     ID = Get_ID;
-     Get_ID++;
    }
-   ~AI(){for(auto s:FriendList){delete s;}}
+   ~ComputerPlayer(){}
 
     bool cheatenable(){return true;}
     bool cheat_instant_max_level_true(){totalgameplayed=100; wincounter=100; update_level(); return true;}
@@ -176,6 +111,51 @@ class AI : public Player{
 };
 
 
+class PlayerList : public Player{
+
+ public:
+  string name;
+  vector <Player*> GroupList;
+
+
+  PlayerList(string new_name,int new_player_count){name=new_name;}
+  ~PlayerList(){delete name;  delete[] GroupList }; // FIX ME
+
+  string get_group_name(){return name;}
+
+
+  void add(player* a){GroupList.push_back(a); } 
+
+  bool is_composit(){return true;}
+
+  player* getPlayer(string comparename){
+     for(auto s:GroupList){
+      if(s->is_composit){
+        s->getPlayer(name)
+      }
+      else{
+        if(s->name == comparename){return s;}
+      } 
+     }
+  }
+
+  void print_list{
+    for(auto s:GroupList){
+      if(s->is_composit){
+        s->print_list();
+      }
+      else{
+        s->print_status();
+        cout << endl;
+      }
+      
+    }
+  }
  
- 
-#endif //PLAYER_HPP
+};
+
+
+
+
+
+
