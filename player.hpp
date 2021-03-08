@@ -6,7 +6,7 @@
 #include<string>
 #include<iostream>
 
-
+using namespace std;
  
 class Player{
 
@@ -20,8 +20,8 @@ class Player{
  
  public:
 
-   virtual Player() {};    
-   virtual ~Player(){};
+   Player()= default  ;   
+   virtual ~Player()= default  ;
  
    virtual bool isWhiteSide() const { return whiteSide; }
 
@@ -29,9 +29,15 @@ class Player{
 
    double winrate() const {return ((double)wincounter/(double)totalgameplayed);}
 
-   string get_name const{ return name; }
+   string get_name() const{ return name; }
 
-   string get_level const{ return level;}
+   string get_level() const{ return level;}
+
+   virtual bool is_composit() {return false;}
+
+   virtual void print_list() {return;}
+
+   virtual Player* getPlayer(string) {return this;}
 
    void update_level(){
 
@@ -47,21 +53,21 @@ class Player{
      return;
    }
 
-   void print_status const(){
-     std::cout<<"Player " << name << " " << this->ID <<" is now " << level <<std::endl<< name <<" is a";
+   void print_status()const{
+     std::cout<<"Player " << name << " " <<" is now " << level <<std::endl<< name <<" is a";
      if(humanPlayer){std::cout<<"Human Player";}
      else{std::cout<<"ComputerPlayer Player";}
      std::cout<<"with a winrate of " << winrate() << " in " << totalgameplayed << " games->";
    }
 
-   virtual bool cheatenable(){}=0;
+   virtual bool cheatenable()=0;
  
 };
 
 class HumanPlayer : public Player{
   private:
    std::string password;
-   bool log_in = false;
+   bool login = false;
    
   public:
     
@@ -77,13 +83,13 @@ class HumanPlayer : public Player{
    ~HumanPlayer(){}
    
     void log_in(std::string a) {
-      if(password.size()=0){password = a; log_in=true; return;}
-      if(a == password){log_in = true;}
-      log_in = false;
+      if(password.size()==0){password = a; login=true; return;}
+      if(a == password){login = true;}
+      login = false;
     }
 
-    void check_log_in()const  {
-      return log_in;}
+    bool check_log_in()const  {
+      return login;}
 
     virtual bool cheatenable(){ return false; }
 
@@ -119,29 +125,29 @@ class PlayerList : public Player{
 
 
   PlayerList(string new_name,int new_player_count){name=new_name;}
-  ~PlayerList(){delete name;  delete[] GroupList }; // FIX ME
+  ~PlayerList()=default  ; // FIX ME
 
   string get_group_name(){return name;}
 
 
-  void add(player* a){GroupList.push_back(a); } 
+  void add(Player* a){GroupList.push_back(a); } 
 
   bool is_composit(){return true;}
 
-  player* getPlayer(string comparename){
+  Player* getPlayer(string comparename){
      for(auto s:GroupList){
-      if(s->is_composit){
-        s->getPlayer(name)
+      if(s->is_composit()){
+        s->getPlayer(name);
       }
       else{
-        if(s->name == comparename){return s;}
+        if(s->get_name() == comparename){return s;}
       } 
      }
   }
 
-  void print_list{
+  void print_list(){
     for(auto s:GroupList){
-      if(s->is_composit){
+      if(s->is_composit()){
         s->print_list();
       }
       else{
@@ -155,6 +161,8 @@ class PlayerList : public Player{
 };
 
 
+
+#endif //PLAYER_HPP
 
 
 
