@@ -61,4 +61,10 @@ void Board::move(Board*, Spot* startBox, Spot* endBox){
 			std::cout << "Invalid move" << endl;
 		}
 	}
+	if(start->getPiece() == 'N' || start->getPiece() == 'n'){
+		canMove* shit = new KnightMove();
+		if(!shit->move(this, start, end)){
+			std::cout << "Invalid move" << endl;
+		}
+	}
 }

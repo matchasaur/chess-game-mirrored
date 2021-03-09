@@ -138,5 +138,31 @@ class RookMove : public canMove{
         return false;
     }
 };
+class KnightMove : public canMove{
+    public:
+    KnightMove(){}
+    virtual bool move(Board* yeet, Spot* start, Spot* end){
+        if(start->getPiece() == 'N'){
+            if(end->getPiece() != 'P' && end->getPiece() != 'R' && end->getPiece() != 'B' && end->getPiece() != 'N' && end->getPiece() != 'Q' && end->getPiece() != 'K' ){
+                if( ( abs(start->getX() - end->getX()) == 1 || abs(start->getX() - end->getX()) == 2 ) && (abs(start->getX() - end->getX()) == 1 || abs(start->getX() - end->getX()) == 2) && (abs(start->getX() - end->getX()) != abs(start->getY() - end->getY()) )){
+                    end->setPiece(start->getPiece());
+		            start->setPiece('-');
+                    return true;
+                }
+            }
+        }
+
+        if(start->getPiece() == 'n'){
+            if(end->getPiece() != 'p' && end->getPiece() != 'r' && end->getPiece() != 'b' && end->getPiece() != 'n' && end->getPiece() != 'q' && end->getPiece() != 'q' ){
+                if( ( abs(start->getX() - end->getX()) == 1 || abs(start->getX() - end->getX()) == 2 ) && (abs(start->getX() - end->getX()) == 1 || abs(start->getX() - end->getX()) == 2) && (abs(start->getX() - end->getX()) != abs(start->getY() - end->getY()) )){
+                    end->setPiece(start->getPiece());
+		            start->setPiece('-');
+                    return true;
+                }
+            }            
+        }
+        return false;
+    }
+};
 #endif
 
