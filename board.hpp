@@ -36,6 +36,7 @@ public:
 };
 class canMove{
     public:
+    virtual ~canMove(){}
     virtual bool move (Board*, Spot*, Spot*) = 0;
 };
 
@@ -43,6 +44,7 @@ class PawnMove : public canMove{
 
     canMove* help;
     public:
+	~PawnMove(){}
         PawnMove(){
         }
     virtual bool move(Board*, Spot* start, Spot* end){
@@ -84,6 +86,7 @@ class PawnMove : public canMove{
 
 class RookMove : public canMove{
     public:
+    ~RookMove(){}
     RookMove(){}
     virtual bool move(Board* yeet, Spot* start, Spot* end){
         if(start->getPiece() == 'R'){
@@ -140,6 +143,7 @@ class RookMove : public canMove{
 };
 class KnightMove : public canMove{
     public:
+    ~KnightMove(){}
     KnightMove(){}
     virtual bool move(Board* yeet, Spot* start, Spot* end){
         if(start->getPiece() == 'N'){
@@ -160,6 +164,32 @@ class KnightMove : public canMove{
                     return true;
                 }
             }            
+        }
+        return false;
+    }
+};
+class KingMove : public canMove{
+    public:
+    ~KingMove(){}
+    KingMove(){}
+    virtual bool move(Board* yeet, Spot* start, Spot* end){
+        if(start->getPiece() == 'K'){
+            if(end->getPiece() != 'P' && end->getPiece() != 'R' && end->getPiece() != 'B' && end->getPiece() != 'N' && end->getPiece() != 'Q' ){
+                if((abs(start->getX() - end->getX()) <= 1) && (abs(start->getY() - end->getY()) <= 1) ){
+                    end->setPiece(start->getPiece());
+		            start->setPiece('-');
+                    return true;
+                }
+            }
+        }
+        if(start->getPiece() == 'k'){
+            if(end->getPiece() != 'p' && end->getPiece() != 'r' && end->getPiece() != 'b' && end->getPiece() != 'n' && end->getPiece() != 'q' ){
+                if((abs(start->getX() - end->getX()) <= 1) && (abs(start->getY() - end->getY()) <= 1) ){
+                    end->setPiece(start->getPiece());
+		            start->setPiece('-');
+                    return true;
+                }
+            }
         }
         return false;
     }

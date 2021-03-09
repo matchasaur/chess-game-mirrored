@@ -54,17 +54,27 @@ void Board::move(Board*, Spot* startBox, Spot* endBox){
 		if(!shit->move(this, start, end)){
 			std::cout << "Invalid move" << endl;
 		}
+		delete shit;
 	}
 	if(start->getPiece() == 'R' || start->getPiece() == 'r'){
 		canMove* shit = new RookMove();
 		if(!shit->move(this, start, end)){
 			std::cout << "Invalid move" << endl;
 		}
+		delete shit;
 	}
 	if(start->getPiece() == 'N' || start->getPiece() == 'n'){
 		canMove* shit = new KnightMove();
 		if(!shit->move(this, start, end)){
 			std::cout << "Invalid move" << endl;
 		}
+		delete shit;
+	}
+	if(start->getPiece() == 'K' || start->getPiece() == 'k'){
+		canMove* shit = new KingMove();
+		if(!shit->move(this, start, end)){
+			std::cout << "Invalid move" << endl;
+		}
+		delete shit;
 	}
 }
