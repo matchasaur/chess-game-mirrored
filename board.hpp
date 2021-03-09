@@ -194,5 +194,86 @@ class KingMove : public canMove{
         return false;
     }
 };
+class BishopMove : public canMove{
+    public:
+    ~BishopMove(){}
+    BishopMove(){}
+    virtual bool move(Board* yeet, Spot* start, Spot* end){
+        if(end->getPiece() != 'P' && end->getPiece() != 'R' && end->getPiece() != 'B' && end->getPiece() != 'N' && end->getPiece() != 'Q' && end->getPiece() != 'K' ){
+            if((start->getX() != end->getX()) && (end->getY() != start->getY())){
+                if((end->getX() > start->getX()) && (end->getY() > start->getY())){
+                    for(int i = start->getX()+ 1; i < end->getX(); ++i){
+                        for(int j = start->getY() + 1; j < end->getY(); ++j){
+                            if(yeet->getBox(i,j)->getPiece() != '-'){
+                                return false;
+                            }
+                        }
+                    
+                    }
+                }
+                if((start->getX() > end->getX()) && (start->getY() > end->getY())){
+                    for(int i = start->getX()- 1; i > end->getX(); --i){
+                        for(int j = start->getY() - 1; j > end->getY(); --j){
+                            if(yeet->getBox(i,j)->getPiece() != '-'){
+                                return false;
+                            }
+                        }
+                    
+                    }
+                }
+                end->setPiece(start->getPiece());
+		        start->setPiece('-');
+                return true;
+            }
+        }
+        if(start->getPiece() == 'b'){
+            if(end->getPiece() != 'p' && end->getPiece() != 'r' && end->getPiece() != 'b' && end->getPiece() != 'n' &  end->getPiece() != 'q' && end->getPiece() != 'k' ){
+                if((start->getX() != end->getX()) && (end->getY() != start->getY())){
+                if((end->getX() > start->getX()) && (end->getY() > start->getY())){
+                    for(int i = start->getX()+ 1; i < end->getX(); ++i){
+                        for(int j = start->getY() + 1; j < end->getY(); ++j){
+                            if(yeet->getBox(i,j)->getPiece() != '-'){
+                                return false;
+                            }
+                        }
+                    
+                    }
+                }
+                if((start->getX() > end->getX()) && (start->getY() > end->getY())){
+                    for(int i = start->getX()- 1; i > end->getX(); --i){
+                        for(int j = start->getY() - 1; j > end->getY(); --j){
+                            if(yeet->getBox(i,j)->getPiece() != '-'){
+                                return false;
+                            }
+                        }
+                    
+                    }
+                }
+                }
+            }
+            end->setPiece(start->getPiece());
+		    start->setPiece('-');
+            return true;
+            
+        }
+        return false;
+    }
+};
+
+class QueenMove : public canMove{
+    public:
+    ~QueenMove(){}
+    QueenMove(){}
+    virtual bool move(Board* yeet, Spot* start, Spot* end){
+        if(start->getPiece() == 'Q'){
+            if(end->getPiece() != 'P' && end->getPiece() != 'R' && end->getPiece() != 'B' && end->getPiece() != 'N' && end->getPiece() != 'Q' && end->getPiece() != 'K' ){
+                return false;
+            }
+            end->setPiece(start->getPiece());
+		    start->setPiece('-');
+            return true;
+        }
+    }
+};
 #endif
 

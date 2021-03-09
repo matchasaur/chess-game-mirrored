@@ -77,4 +77,18 @@ void Board::move(Board*, Spot* startBox, Spot* endBox){
 		}
 		delete shit;
 	}
+	if(start->getPiece() == 'B' || start->getPiece() == 'b'){
+		canMove* shit = new BishopMove();
+		if(!shit->move(this, start, end)){
+			std::cout << "Invalid move" << endl;
+		}
+		delete shit;
+	}
+	if(start->getPiece() == 'Q' || start->getPiece() == 'q'){
+		canMove* shit = new QueenMove();
+		if(!shit->move(this, start, end)){
+			std::cout << "Invalid move" << endl;
+		}
+		delete shit;
+	}		
 }
