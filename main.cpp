@@ -1,4 +1,4 @@
-nclude <iostream>
+#include <iostream>
 #include "board.hpp"
 using namespace std;
 
@@ -7,15 +7,17 @@ int main(){
     f->printBoard();
 
     int startX,startY,endX,endY;
-    for(int i = 0; i < 4; ++i){
+    f->kingCaptured = false;
+    while(f->kingCaptured != true){
     cin >> startX;
     cin >> startY;
     cin >> endX;
     cin >> endY;
 
-    f->move(f->getBox(startX, startY), f->getBox(endX,endY));
+    f->move(f, f->getBox(startX, startY), f->getBox(endX,endY));
     f->printBoard();
-    }
 
+    }
+	//delete f;
     return 0;
 }
