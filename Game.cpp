@@ -68,7 +68,7 @@ void Game::parseMove(stringstream &input, color playerTurn) {
     cout << "StartCoords: " << startCoords.first << ", " << startCoords.second << endl;
     cout << "EndCoords: " << endCoords.first << ", " << endCoords.second << endl;
     //NEED TO FIX Board.move() TO ACCEPT PAIRS OF INTS
-    //chessBoard->move(chessBoard->getBox(startCoords), chessBoard->getBox(endCoords));
+    chessBoard->move(chessBoard, chessBoard->getBox(startCoords.first, startCoords.second), chessBoard->getBox(endCoords.first, endCoords.second));
 }
 
 pair<int, int> Game::getCoordinates(string coordinate) {
