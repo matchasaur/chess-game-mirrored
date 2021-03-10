@@ -7,24 +7,13 @@ using namespace std;
 
 
 
-TEST(FactoryTest, PawnTest){
-	char* test_val[2]; test_val[0] = "./test"; test_val[1] = "P";
-        MoveFactory* f = new MoveFactory();
-	canMove* test = f->make_canMove(test_val, 2);
-	string results = test->make_canMove();
-        EXPECT_EQ("P", results);
-}
-
-
-
-TEST(FactoryTest, PawnTest){
-        char* test_val[2]; test_val[0] = "./test"; test_val[1] = "P";
+TEST(FactoryTest, simplFactTest){
 	Board* f = new Board();
-	MoveFactory* test = f->move();
-        string results = test->make_canMove();
-        EXPECT_EQ("P", results);
+	MoveFactory t;
+        canMove* mover = t.make_canMove(f->getBox(1,0)->getPiece());
+	mover->move(f, f->getBox(1,0), f->getBox(3,0));
+	delete f;
 }
-
 
 
 #endif
