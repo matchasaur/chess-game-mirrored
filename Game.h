@@ -41,8 +41,8 @@ class Game {
 
 
 
-  int declare_win(Board*);
-  int declare_win(int);
+
+  int declare_win();
 
   pair<int, int> getCoordinates(string cordinate);
   bool validateInput(string move);
