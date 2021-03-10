@@ -5,13 +5,14 @@
 #include<map>
 #include<list>
 #include <stdlib.h>
-
+using namespace std;
 class Spot{
 	int x;
 	int y;
     char t;
 public:
     Spot() {}
+    ~Spot(){}
 	Spot(int x, int y, char t){
 	this->setPiece(t);
     this->setY(y);
@@ -28,6 +29,13 @@ public:
 class Board{
 	Spot* boxes[8][8];
 public:
+	~Board(){
+	for(int i = 0; i < 8; ++i){
+		for(int j = 0; j < 8; ++i){
+			delete boxes[i][j];
+		}
+	  }
+	}
 	Board();
 	void resetBoard();
 	Spot* getBox(int, int);
@@ -49,6 +57,9 @@ class PawnMove : public canMove{
         }
     virtual bool move(Board*, Spot* start, Spot* end){
     if(start->getPiece() == 'P'){
+	if(start->getX() > end->getX()){
+            return false;
+        }
         if(end->getPiece() != 'P' && end->getPiece() != 'R' && end->getPiece() != 'B' && end->getPiece() != 'N' && end->getPiece() != 'Q' && end->getPiece() != 'K' && end->getPiece() != '-' ){
             if(end->getY() != start->getY() && ((end->getX() == start->getX() + 1) || (end->getX() == start->getX() - 1)) ){
                 end->setPiece(start->getPiece());
@@ -58,6 +69,9 @@ class PawnMove : public canMove{
         }
     }
     if(start->getPiece() == 'p'){
+	if(start->getX() < end->getX()){
+            return false;
+        }
         if(end->getPiece() != 'p' && end->getPiece() != 'r' && end->getPiece() != 'b' && end->getPiece() != 'n' && end->getPiece() != 'q' && end->getPiece() != 'k' && end->getPiece() != '-' ){
             if(end->getY() != start->getY() && ((end->getX() == start->getX() + 1) || (end->getX() == start->getX() - 1)) ){
                 end->setPiece(start->getPiece());
@@ -267,12 +281,12 @@ class QueenMove : public canMove{
     virtual bool move(Board* yeet, Spot* start, Spot* end){
         if(start->getPiece() == 'Q'){
             if(end->getPiece() != 'P' && end->getPiece() != 'R' && end->getPiece() != 'B' && end->getPiece() != 'N' && end->getPiece() != 'Q' && end->getPiece() != 'K' ){
-                return false;
-            }
             end->setPiece(start->getPiece());
-		    start->setPiece('-');
+                    start->setPiece('-');
             return true;
+		}
         }
+	return false;
     }
 };
 #endif
