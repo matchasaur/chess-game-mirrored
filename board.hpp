@@ -5,7 +5,6 @@
 #include<map>
 #include<list>
 #include <stdlib.h>
-#include "canMove.hpp"
 #include <queue>
 #include <stack>
 
@@ -34,12 +33,12 @@ class Board{
 	Spot* boxes[8][8];
     
 public:
-    stack<Spot*> history;
+    std::stack<Spot*> history;
 	Board();
 	~Board(){
 	 for(int i = 0; i < 8; ++i){
 		for (int j = 0; j < 8; ++j){
-			delete boes[i][j])
+			delete boxes[i][j];
 		}
 	}
 	}
@@ -253,7 +252,7 @@ class BishopMove : public canMove{
                 if((end->getX() > start->getX()) && (end->getY() > start->getY())){
                     for(int i = start->getX()+ 1; i < end->getX(); ++i){
                         for(int j = start->getY() + 1; j < end->getY(); ++j){
-                            if(yeet->getBox(i,j)->getPiece() != '-'){
+                            if(yeet->getBox(i,j)->getPiece() != '-' || yeet->getBox(start->getX(), i)->getPiece() != 'B'){
                                 return false;
                             }
                         }
@@ -263,7 +262,7 @@ class BishopMove : public canMove{
                 if((start->getX() > end->getX()) && (start->getY() > end->getY())){
                     for(int i = start->getX()- 1; i > end->getX(); --i){
                         for(int j = start->getY() - 1; j > end->getY(); --j){
-                            if(yeet->getBox(i,j)->getPiece() != '-'){
+                            if(yeet->getBox(i,j)->getPiece() != '-' || yeet->getBox(start->getX(), i)->getPiece() != 'B'){
                                 return false;
                             }
                         }
@@ -284,7 +283,7 @@ class BishopMove : public canMove{
                 if((end->getX() > start->getX()) && (end->getY() > start->getY())){
                     for(int i = start->getX()+ 1; i < end->getX(); ++i){
                         for(int j = start->getY() + 1; j < end->getY(); ++j){
-                            if(yeet->getBox(i,j)->getPiece() != '-'){
+                            if(yeet->getBox(i,j)->getPiece() != '-' || yeet->getBox(start->getX(), i)->getPiece() != 'b'){
                                 return false;
                             }
                         }
@@ -294,7 +293,7 @@ class BishopMove : public canMove{
                 if((start->getX() > end->getX()) && (start->getY() > end->getY())){
                     for(int i = start->getX()- 1; i > end->getX(); --i){
                         for(int j = start->getY() - 1; j > end->getY(); --j){
-                            if(yeet->getBox(i,j)->getPiece() != '-'){
+                            if(yeet->getBox(i,j)->getPiece() != '-' || yeet->getBox(start->getX(), i)->getPiece() != 'b'){
                                 return false;
                             }
                         }
@@ -322,22 +321,20 @@ class QueenMove : public canMove{
     virtual bool move(Board* yeet, Spot* start, Spot* end){
         if(start->getPiece() == 'Q'){
             if(end->getPiece() != 'P' && end->getPiece() != 'R' && end->getPiece() != 'B' && end->getPiece() != 'N' && end->getPiece() != 'Q' && end->getPiece() != 'K' ){
-                return false;
-            }
-            if(end->getPiece() == 'k'){
+                if(end->getPiece() == 'k'){
                     yeet->kingCaptured = true;
                 }
+            }
             end->setPiece(start->getPiece());
 		    start->setPiece('-');
             return true;
         }
         if(start->getPiece() == 'q'){
             if(end->getPiece() != 'p' && end->getPiece() != 'r' && end->getPiece() != 'b' && end->getPiece() != 'n' && end->getPiece() != 'q' && end->getPiece() != 'k' ){
-                return false;
-            }
-            if(end->getPiece() == 'K'){
+                if(end->getPiece() == 'K'){
                     yeet->kingCaptured = true;
                 }
+            }
             end->setPiece(start->getPiece());
 		    start->setPiece('-');
             return true;
