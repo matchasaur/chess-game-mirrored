@@ -1,4 +1,4 @@
-fndef __BOARD_HPP__
+#ifndef __BOARD_HPP__
 #define __BOARD_HPP__
 
 #include<iostream>
@@ -43,8 +43,10 @@ class PawnMove : public canMove{
 
     canMove* help;
     public:
-        PawnMove(){}        }
-    virtual bool move(Spot* start, Spot* end){
+    PawnMove(){}
+};
+/*
+virtual bool move(Spot* start, Spot* end){
     if(start->getPiece() == 'P'){
         if(end->getPiece() != 'P' && end->getPiece() != 'R' && end->getPiece() != 'B' && end->getPiece() != 'N' && end->getPiece() != 'Q' && end->getPiece() != 'K' && end->getPiece() != '-' ){
             if(end->getY() != start->getY() && ((end->getX() == start->getX() + 1) || (end->getX() == start->getX() - 1)) ){
@@ -78,7 +80,6 @@ class PawnMove : public canMove{
 
         return false;
     }
-        
-};
+*/
 #endif
 

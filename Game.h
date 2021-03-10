@@ -5,6 +5,10 @@
 #ifndef _GAME_H
 #define _GAME_H
 
+#include "board.hpp"
+
+using namespace std;
+
 enum color{White, Black};
 
 //test purposes only
@@ -19,13 +23,16 @@ public:
 class Game{
 private:
     color turn;
+    Board* chessBoard;
     Player* player1;
     Player* player2;
 
 public:
-    void game_start();
-    Game();
 
+
+    Game();
+    void game_start();
+    void parseMove(stringstream& input, color playerTurn);
 
     //helpers
     void nextTurn() {
@@ -37,6 +44,7 @@ public:
         }
     }
     void declare_win();
+    pair<int, int> getCoordinates(string cordinate);
 };
 
 
