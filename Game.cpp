@@ -1,7 +1,3 @@
-//
-// Created by Jared on 3/7/2021.
-// Modified by Chun on 3/9/2021. /// Merge with PlayerClass
-
 #include "Game.h"
 
 #include "player.hpp"
@@ -31,7 +27,7 @@ void Game::game_start() {
   string move;
  
 
-  //instantiate board
+
   cout << "Let's play chess!" << endl;
 
   
@@ -44,55 +40,59 @@ if(queue->get_size()>1){
   delete player1;
   delete player2;
 
-  queue->print_list();
-  cout<<"Who is player 1?\n";
+  cout<< queue->print_list();
+  cout<<"Who is player 1?(White)\n";
   cin >> name1;
-  cout<< "Who is player 2?\n";
+  cout<< "Who is player 2?(Black)\n";
   cin >> name2;
 
-  player1 = new HumanPlayer(name1, Black);
-  player2 = new HumanPlayer(name2, White);
+  player1 = queue->getPlayer(name1);
+  player1->set_color(White);
+  player2 = queue->getPlayer(name2);
+  player1->set_color(Black);
+  player1->game_increment();
+  player2->game_increment();
 
 }
-else if (queue->get_size()== 1) {cout<< "WINNER WINNER CHICKEN DINNER!\n" << "YOU ARE THE TOURNAMENT CHAMPION!"; exit(1);}
+else if (queue->get_size()== 1) {cout<< "WINNER WINNER CHICKEN DINNER!\n" << "YOU ARE THE TOURNAMENT CHAMPION!"; cout<< queue->print_list(); exit(1);}
 
 
-  //display board
   chessBoard->printBoard();
   while (!player1 -> isCheckmate() || !player2 -> isCheckmate()) {
     if (turn == White) {
       cout << "White to options: " << endl;
-    } //Declares whose turn is it
+    } 
     else {
       cout << "Black to options: " << endl;
     }
     chessBoard->printOptions(chessBoard);
-    //parse move to appropriate player
+
     getline(cin, input);
     stringstream move(input);
     parseMove(move, turn);
 
-    //display board
+
     chessBoard->printBoard();
     nextTurn();
   }
-
-  declare_win(); //outputs the winner
+  int winner = declare_win(); //outputs the winner
   
-  if (queue->get_size() <= 1) {cout<< "WINNER WINNER CHICKEN DINNER!\n" << "YOU ARE THE TOURNAMENT CHAMPION!"; exit(1);}
+  if(winner ==1){player1->win_increment();Player* winnerptr = player1;}
+  else if(winner ==2){player2->win_increment();Player* winnerptr = player2;}
+  Player* winnerptr = nullptr;
+
+  
+  if (queue->get_size()-1 == winnerptr->get_wincounter()) {cout<< "WINNER WINNER CHICKEN DINNER!\n" << "YOU ARE THE TOURNAMENT CHAMPION!"; exit(1);}
   else{
     char temp;
     cout << "There are more players waiting to play with you in the queue, do you want to continute? Do you want to see your rank? (Y/N/R)\n";
      cin >> temp;
      if(temp == 'Y'){game_start();}
-     else if (temp == 'R') {exit(1);}
+     else if (temp == 'R') {winnerptr->print_status();}
      else {exit(1);}
   }
 
 }
-
-
-
 
 
 
@@ -145,7 +145,7 @@ void Game::AddPlayer() {
  
   cout << "Enter New Player Name or \"NA\" to stop\n";
   cin >> input;
-  cin.ignore();
+  
 
   while (input != "NA") {
   
@@ -153,19 +153,24 @@ void Game::AddPlayer() {
     queue -> add(temp);
     
     cout << "Enter New Player Name or \"NA\" to stop\n";
-    cin.ignore();
+
     cin >> input;
-    cin.ignore();
+  
   }
+
+ 
   return;
 }
 
-void Game::declare_win() {
+int Game::declare_win() {
   if (player1 -> isCheckmate()) {
     cout << "Black is victorious!" << endl;
+    return 1;
   } else if (player2 -> isCheckmate()) {
     cout << "White is victorious!" << endl;
+    return 2;
   }
+  return -1; //tie
 }
 
 
@@ -179,13 +184,13 @@ void Game::parseMove(stringstream &input, color playerTurn) {
 
     cout << "StartCoords: " << startCoords.first << ", " << startCoords.second << endl;
     cout << "EndCoords: " << endCoords.first << ", " << endCoords.second << endl;
-    //NEED TO FIX Board.move() TO ACCEPT PAIRS OF INTS
+    
     chessBoard->move(chessBoard, chessBoard->getBox(startCoords.first, startCoords.second), chessBoard->getBox(endCoords.first, endCoords.second));
 }
 
 pair<int, int> Game::getCoordinates(string coordinate) {
     pair<int, int> xyCoordinates;
-    //Creates a map that associates an alpha key to numerical value in-order to represent file (column)
+
     map<char, int> file;
     file.insert(pair<char, int>('a', 0));
     file.insert(pair<char, int>('b', 1));

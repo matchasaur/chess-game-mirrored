@@ -1,5 +1,3 @@
-/* Created by Chun on 3/7/2021.*/
-
 #ifndef PLAYER_HPP
 #define PLAYER_HPP
 
@@ -44,6 +42,14 @@ class Player {
   virtual color get_color() const {
     return pieces;
   }
+
+  virtual void win_increment() {
+    wincounter++;
+  }
+  virtual int get_wincounter() {
+    return wincounter;
+  }
+
 
   virtual void set_name(string a) {
     name = a;
@@ -98,7 +104,7 @@ class Player {
 
     if (totalgameplayed < 2) {
       level = "unranked";
-      cout << "\nYou'll need to complete 2 competitive matches to get your first rank.\n";
+      
       return;
     } /*no idea if this should be print somewhere else. FIX ME!!!!*/
 
@@ -119,9 +125,11 @@ class Player {
     return;
   }
 
-  string print_status() const {
+  string print_status() {
 
     string return_string;
+
+    update_level();
 
     return_string += "Player " + name + " is now " + level + ". " + name + " is a ";
 
@@ -175,7 +183,6 @@ class HumanPlayer: public Player {
     return false;
   }
 
-  /*This is where the cheat function would be if we have time*/
 
 };
 
@@ -228,10 +235,10 @@ class PlayerList: public Player {
   void add(Player * a) {
     GroupList.push_back(a);
     if(!is_composit()){
-      size += a->get_size(); 
-      cout<<"DEBUG1";}
-    else{size++;
-    cout<<"DEBUG2!";}
+      size += a->get_size(); }
+      
+    else{size++;}
+    
   }
 
   virtual bool cheatenable() {
@@ -274,7 +281,9 @@ class PlayerList: public Player {
 
     return return_a;
   }
+  
 
 };
 
 #endif //PLAYER_HPP
+

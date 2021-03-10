@@ -74,6 +74,11 @@ class PawnMove : public canMove{
                 if(end->getPiece() == 'k'){
                     yeet->kingCaptured = true;
                 }
+                if(end->getX() == 7){
+                  end->setPiece('Q');
+                  start->setPiece('-');
+                  return true;
+                }
                 end->setPiece(start->getPiece());
 			    start->setPiece('-');
                return true;
@@ -88,6 +93,11 @@ class PawnMove : public canMove{
             if(end->getY() != start->getY() && ((end->getX() == start->getX() + 1) || (end->getX() == start->getX() - 1)) ){
                 if(end->getPiece() == 'K'){
                     yeet->kingCaptured = true;
+                }
+                if(end->getX() == 0){
+                  end->setPiece('q');
+                  start->setPiece('-');
+                  return true;
                 }
                 end->setPiece(start->getPiece());
 			    start->setPiece('-');
@@ -346,4 +356,5 @@ class QueenMove : public canMove{
 };
 
 #endif
+
 
