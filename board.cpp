@@ -74,66 +74,24 @@ void Board::printBoard(){
 Spot* Board::getBox(int i, int j){
 	return boxes[i][j];
 }
+
+
+
+/*FACTORY IMPLEMENT */
 void Board::move(Board*, Spot* startBox, Spot* endBox){
 	Spot* start = startBox;
 	Spot* end = endBox;
 	history.push(new Spot(start->getX(), start->getY(), start->getPiece()));
 	history.push(new Spot(end->getX(), end->getY(), end->getPiece()));
-	
-	if(start->getPiece() == 'P' || start->getPiece() == 'p'){
-		canMove* shit = new PawnMove();
-		if(!shit->move(this, start, end)){
+  
+  canMove* mover = new canMove(start->getPiece());
+
+  if(!mover->move(this, start, end)|| mover == nullptr){
 			history.pop();
 			history.pop();
 			std::cout << "Invalid move" << endl;
 		}
-		delete shit;
-	}
-	if(start->getPiece() == 'R' || start->getPiece() == 'r'){
-		canMove* shit = new RookMove();
-		if(!shit->move(this, start, end)){
-			history.pop();
-			history.pop();
-			std::cout << "Invalid move" << endl;
-		}
-		delete shit;
-	}
-	if(start->getPiece() == 'N' || start->getPiece() == 'n'){
-		canMove* shit = new KnightMove();
-		if(!shit->move(this, start, end)){
-			history.pop();
-			history.pop();
-			std::cout << "Invalid move" << endl;
-		}
-		delete shit;
-	}
-	if(start->getPiece() == 'K' || start->getPiece() == 'k'){
-		canMove* shit = new KingMove();
-		if(!shit->move(this, start, end)){
-			history.pop();
-			history.pop();
-			std::cout << "Invalid move" << endl;
-		}
-		delete shit;
-	}
-	if(start->getPiece() == 'B' || start->getPiece() == 'b'){
-		canMove* shit = new BishopMove();
-		if(!shit->move(this, start, end)){
-			history.pop();
-			history.pop();
-			std::cout << "Invalid move" << endl;
-		}
-		delete shit;
-	}
-	if(start->getPiece() == 'Q' || start->getPiece() == 'q'){
-		canMove* shit = new QueenMove();
-		if(!shit->move(this, start, end)){
-			history.pop();
-			history.pop();
-			std::cout << "Invalid move" << endl;
-		}
-		delete shit;
-	}		
+	delete mover;
 }
 
 void Board::undo(){
