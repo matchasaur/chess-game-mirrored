@@ -92,46 +92,34 @@
 
 ## Phase II
 ## Class Diagram 
-![Final Project 2_16 - UML Class (2)](https://user-images.githubusercontent.com/77028662/108160982-f4415c80-709e-11eb-9d24-f5c3ba7e24b0.jpeg)
+![Final Project 2_16 - UML Class](https://user-images.githubusercontent.com/77028662/110617388-8098e980-814a-11eb-9f96-a770020aed80.jpeg)
+
 
 
  <br />
 Class Description: 
 
-- In this program, there is a class named Game. In the Game class, both players, the start and end time, game progress, and vector are established. Game Class also aggregates the three classes spot, board, and move which together initialize the board, determine locations, and check the validity of moves. The Board list inherits from the game class and will be the class that manages the save and load functions of our program. It saves the board in a vector of boards when saved, can delete all games, and load a specific board.
+- The program could be divide into two main sections. 1)community functions; 2) gameplays 
 
-- On the other hand, We also have the class Player, which will determine the player side, type of player, meanwhile, each player stores an input a name and level, have a stored win counter and total game counter. Also, each player has a vector list of the players. This allows the function to dynamically calculate the win rates for each player stored in the vector list. We use addFriend and emptyFriendList functions to push and empty the vector. And Boolean function to determine if the player is an actual human or AI. In the future, we might add functions that assign a level to each player base on their win rates. There are two classes that inherit from it, HumanPlayer and ComputerPlayer, and by doing this we would be able to understand if the player is a real person or not. By doing so we can implement auto movement inside the AI class, doing this would also make sure no HumanPlayer can use the programmed algorithm (To avoid game cheat).
+- In the community functions section, we have a master abstract Player class that holds information for a basic player including name and level, winrate. Both HumanPlayer and ComputerPlayer is a type of player, so they inherent form it naturally with different function like enabling ComputerPlayer to modify their winrate to allow easy testing. On top of that, we also have a PlayerList which then stores any object inherent from Player Class, that being said, it could store a list of a list. And the recursive function inside would handle the print list and pick player correctly. This allows us to an easy setup if we want to do a Tournament in the future.
 
-- The next class, Pieces, inherits from the Game class. In this class, the color of the pieces is set, movement is determined, and the game is able to figure out if a piece has been “defeated” by using the strategy design pattern. Additionally, the six pieces of the chess game, king, queen, rook, bishop, knight, and pawn, each have their own classes that inherit from the Pieces class. In these classes, the specific movement of the unique pieces is established, along with conditional movements. For example, the rook and king being able to “castle” as a unique move in the game.
+- In the gameplays section, it is divided into a few classes. We have a board class that basically holds the information of a game and two players' information. We also have CanMove class and its many sub_class to the corresponding game rules for each piece in the chess game. Doing this in a strategy pattern fashion allows us to easily change their behavior and keep those codes in the same place. On top of the Strategy Pattern, we also introduced a factory partner that response to the board and return the correct canMove object. With the spot class, we are able to store pieces as char instead of a custom object.  
 
-
-
-
+- The game itself is an interface with the user. Allowing them to play the game.
 
 
 
 
 
+ 
+## Phase III (Meeting With TA; Done)
 
 
-
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
  
 **References:**\
 https://refactoring.guru/<br />
 https://en.wikipedia.org/wiki/Chess  <br />
 https://en.wikipedia.org/wiki/Chess_symbols_in_Unicode  <br />
-
- 
-## Phase III (Meeting With TA; Done)
  
 
  > ## Final deliverable
