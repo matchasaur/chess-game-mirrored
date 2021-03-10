@@ -252,7 +252,7 @@ class BishopMove : public canMove{
                 if((end->getX() > start->getX()) && (end->getY() > start->getY())){
                     for(int i = start->getX()+ 1; i < end->getX(); ++i){
                         for(int j = start->getY() + 1; j < end->getY(); ++j){
-                            if(yeet->getBox(i,j)->getPiece() != '-'){
+                            if(yeet->getBox(i,j)->getPiece() != '-' || yeet->getBox(start->getX(), i)->getPiece() != 'B'){
                                 return false;
                             }
                         }
@@ -262,7 +262,7 @@ class BishopMove : public canMove{
                 if((start->getX() > end->getX()) && (start->getY() > end->getY())){
                     for(int i = start->getX()- 1; i > end->getX(); --i){
                         for(int j = start->getY() - 1; j > end->getY(); --j){
-                            if(yeet->getBox(i,j)->getPiece() != '-'){
+                            if(yeet->getBox(i,j)->getPiece() != '-' || yeet->getBox(start->getX(), i)->getPiece() != 'B'){
                                 return false;
                             }
                         }
@@ -283,7 +283,7 @@ class BishopMove : public canMove{
                 if((end->getX() > start->getX()) && (end->getY() > start->getY())){
                     for(int i = start->getX()+ 1; i < end->getX(); ++i){
                         for(int j = start->getY() + 1; j < end->getY(); ++j){
-                            if(yeet->getBox(i,j)->getPiece() != '-'){
+                            if(yeet->getBox(i,j)->getPiece() != '-' || yeet->getBox(start->getX(), i)->getPiece() != 'b'){
                                 return false;
                             }
                         }
@@ -293,7 +293,7 @@ class BishopMove : public canMove{
                 if((start->getX() > end->getX()) && (start->getY() > end->getY())){
                     for(int i = start->getX()- 1; i > end->getX(); --i){
                         for(int j = start->getY() - 1; j > end->getY(); --j){
-                            if(yeet->getBox(i,j)->getPiece() != '-'){
+                            if(yeet->getBox(i,j)->getPiece() != '-' || yeet->getBox(start->getX(), i)->getPiece() != 'b'){
                                 return false;
                             }
                         }
