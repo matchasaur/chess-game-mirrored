@@ -2,6 +2,7 @@
 #include "factory.hpp"
 #include <iostream>
 #include <queue>
+
 using namespace std;
 Board::Board(){
 	resetBoard();
@@ -74,6 +75,33 @@ void Board::printBoard(){
 }
 Spot* Board::getBox(int i, int j){
 	return boxes[i][j];
+}
+void Board::printOptions(Board* w){
+  std::cout << "(M)ove, (U)ndo, (R)eset" << endl;
+  char option;
+  cin >> option;
+
+  switch (option){
+    case 'M':
+    case 'm':
+    std::cout << "Make your Move! \n";
+    cin.ignore();
+    break;
+    case 'U':
+    case 'u':
+    std::cout << "Undone, Same person make a move! \n";
+    w->undo();
+    cin.ignore();
+    w->printBoard();
+    break;
+    case 'R':
+    case 'r':
+    cin.ignore();
+    std::cout << "Resetting the board! \n";
+    w->resetBoard();
+    w->printBoard();
+    break;
+  }
 }
 
 

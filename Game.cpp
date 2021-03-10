@@ -12,6 +12,7 @@
 
 #include <sstream>
 
+#include <stdlib.h>
 
 using namespace std;
 
@@ -24,25 +25,48 @@ Game::Game() {
 
 }
 
+
 void Game::game_start() {
   string input;
   string move;
+ 
+
   //instantiate board
   cout << "Let's play chess!" << endl;
-  if (PrintMenu() == 2) {
-    return;
-  } // END THE GAME HERE
+
+  
+
+if(queue->get_size()>1){
+
+  string name1; 
+  string name2;
+
+  delete player1;
+  delete player2;
+
+  queue->print_list();
+  cout<<"Who is player 1?\n";
+  cin >> name1;
+  cout<< "Who is player 2?\n";
+  cin >> name2;
+
+  player1 = new HumanPlayer(name1, Black);
+  player2 = new HumanPlayer(name2, White);
+
+}
+else if (queue->get_size()== 1) {cout<< "WINNER WINNER CHICKEN DINNER!\n" << "YOU ARE THE TOURNAMENT CHAMPION!"; exit(1);}
+
 
   //display board
   chessBoard->printBoard();
   while (!player1 -> isCheckmate() || !player2 -> isCheckmate()) {
     if (turn == White) {
-      cout << "White to move: " << endl;
+      cout << "White to options: " << endl;
     } //Declares whose turn is it
     else {
-      cout << "Black to move: " << endl;
+      cout << "Black to options: " << endl;
     }
-
+    chessBoard->printOptions(chessBoard);
     //parse move to appropriate player
     getline(cin, input);
     stringstream move(input);
@@ -50,26 +74,29 @@ void Game::game_start() {
 
     //display board
     chessBoard->printBoard();
-
+    nextTurn();
   }
 
   declare_win(); //outputs the winner
-
-}
-
-void Game::declare_win() {
-  if (player1 -> isCheckmate()) {
-    cout << "Black is victorious!" << endl;
-  } else if (player2 -> isCheckmate()) {
-    cout << "White is victorious!" << endl;
+  
+  if (queue->get_size() <= 1) {cout<< "WINNER WINNER CHICKEN DINNER!\n" << "YOU ARE THE TOURNAMENT CHAMPION!"; exit(1);}
+  else{
+    char temp;
+    cout << "There are more players waiting to play with you in the queue, do you want to continute? Do you want to see your rank? (Y/N/R)\n";
+     cin >> temp;
+     if(temp == 'Y'){game_start();}
+     else if (temp == 'R') {exit(1);}
+     else {exit(1);}
   }
+
 }
 
-void Game::Print_rules() const {
-  cout << "Chess is a two-player board game using a chessboard and sixteen pieces of six types for each player. Each type of piece moves in a distinct way. The object of the game is to checkmate (threaten with inescapable capture) the opponent's king. Games do not necessarily end in checkmate; players often resign if they believe they will lose. A game can also end in a draw in several ways.\n";
-}
 
-int Game::PrintMenu() {
+
+
+
+
+int Game::PrintMenu(Game* t) {
   std: string menu_string;
   int option;
 
@@ -83,22 +110,30 @@ int Game::PrintMenu() {
   switch (option) {
 
   case 1:
-    this -> game_start();
+    cin.ignore();
+    t -> game_start();
     break;
   case 2:
+    cin.ignore();
     this -> Print_rules();
+    PrintMenu(t);
     break;
   case 8:
+    cin.ignore();
     this -> AddPlayer();
+    t -> game_start();
     break;
   case 9:
-    cout << "Have a good day!";
+    cin.ignore();
+    cout << "Have a good day!\n";
     RandomChessQuotes();
     return 2;
+    exit(1);
+    break;
 
   default:
-    cout << "Invalid input, please try again";
-    PrintMenu();
+    cout << "Invalid input, please try again\n";
+    PrintMenu(t);
     break;
 
   }
@@ -106,29 +141,75 @@ int Game::PrintMenu() {
 }
 
 void Game::AddPlayer() {
-  cout << "Enter New Player Name or \"NA\" to stop\n";
   string input = "";
-  string side;
+ 
+  cout << "Enter New Player Name or \"NA\" to stop\n";
   cin >> input;
-  color decision;
+  cin.ignore();
 
   while (input != "NA") {
-    cout << "Enter Side (W/B)\n";
-    cin >> side;
-    if (side == "W") {
-      decision = White;
-    } else {
-      decision = Black;
-    }
-    Player * temp = new HumanPlayer(input, decision);
+  
+    Player * temp = new HumanPlayer(input, White);
     queue -> add(temp);
+    
+    cout << "Enter New Player Name or \"NA\" to stop\n";
+    cin.ignore();
     cin >> input;
+    cin.ignore();
   }
   return;
 }
 
+void Game::declare_win() {
+  if (player1 -> isCheckmate()) {
+    cout << "Black is victorious!" << endl;
+  } else if (player2 -> isCheckmate()) {
+    cout << "White is victorious!" << endl;
+  }
+}
+
+
+void Game::parseMove(stringstream &input, color playerTurn) {
+    pair<int, int> startCoords, endCoords;
+    string start, end;
+    input >> start >> end;
+
+    startCoords = getCoordinates(start);
+    endCoords = getCoordinates(end);
+
+    cout << "StartCoords: " << startCoords.first << ", " << startCoords.second << endl;
+    cout << "EndCoords: " << endCoords.first << ", " << endCoords.second << endl;
+    //NEED TO FIX Board.move() TO ACCEPT PAIRS OF INTS
+    chessBoard->move(chessBoard, chessBoard->getBox(startCoords.first, startCoords.second), chessBoard->getBox(endCoords.first, endCoords.second));
+}
+
+pair<int, int> Game::getCoordinates(string coordinate) {
+    pair<int, int> xyCoordinates;
+    //Creates a map that associates an alpha key to numerical value in-order to represent file (column)
+    map<char, int> file;
+    file.insert(pair<char, int>('a', 0));
+    file.insert(pair<char, int>('b', 1));
+    file.insert(pair<char, int>('c', 2));
+    file.insert(pair<char, int>('d', 3));
+    file.insert(pair<char, int>('e', 4));
+    file.insert(pair<char, int>('f', 5));
+    file.insert(pair<char, int>('g', 6));
+    file.insert(pair<char, int>('h', 7));
+    xyCoordinates.first = 8 - (coordinate.at(2) - '0');
+    xyCoordinates.second = file[coordinate.at(1)];
+
+    return xyCoordinates;
+}
+
+
+/*clean*/
+
+void Game::Print_rules() const {
+  cout << "\n\nChess is a two-player board game using a chessboard and sixteen pieces of six types for each player. Each type of piece moves in a distinct way. The object of the game is to checkmate (threaten with inescapable capture) the opponent's king. Games do not necessarily end in checkmate; players often resign if they believe they will lose. A game can also end in a draw in several ways.\n\n";
+}
+
 void Game::RandomChessQuotes() const {
-  int a = rand() % (10 - 1 + 1);
+  int a = rand() % 10 + 1;
 
   switch (a) {
 
@@ -168,36 +249,4 @@ void Game::RandomChessQuotes() const {
 
   return;
 
-}
-
-void Game::parseMove(stringstream &input, color playerTurn) {
-    pair<int, int> startCoords, endCoords;
-    string start, end;
-    input >> start >> end;
-
-    startCoords = getCoordinates(start);
-    endCoords = getCoordinates(end);
-
-    cout << "StartCoords: " << startCoords.first << ", " << startCoords.second << endl;
-    cout << "EndCoords: " << endCoords.first << ", " << endCoords.second << endl;
-    //NEED TO FIX Board.move() TO ACCEPT PAIRS OF INTS
-    chessBoard->move(chessBoard, chessBoard->getBox(startCoords.first, startCoords.second), chessBoard->getBox(endCoords.first, endCoords.second));
-}
-
-pair<int, int> Game::getCoordinates(string coordinate) {
-    pair<int, int> xyCoordinates;
-    //Creates a map that associates an alpha key to numerical value in-order to represent file (column)
-    map<char, int> file;
-    file.insert(pair<char, int>('a', 0));
-    file.insert(pair<char, int>('b', 1));
-    file.insert(pair<char, int>('c', 2));
-    file.insert(pair<char, int>('d', 3));
-    file.insert(pair<char, int>('e', 4));
-    file.insert(pair<char, int>('f', 5));
-    file.insert(pair<char, int>('g', 6));
-    file.insert(pair<char, int>('h', 7));
-    xyCoordinates.first = 8 - (coordinate.at(2) - '0');
-    xyCoordinates.second = file[coordinate.at(1)];
-
-    return xyCoordinates;
 }

@@ -32,7 +32,7 @@ class Game {
   Game();
   void game_start();
   void parseMove(stringstream& input, color playerTurn);
-  int PrintMenu();
+  int PrintMenu(Game* t);
   void Print_rules() const;
   void AddPlayer();
   void RandomChessQuotes() const;

@@ -49,6 +49,8 @@ class Player {
     name = a;
   }
 
+  virtual int get_size(){return 0;}
+
   virtual void set_color(color a) {
     pieces = a;
   }
@@ -210,10 +212,12 @@ class ComputerPlayer: public Player {
 class PlayerList: public Player {
 
   public: string name;
+  int size;
   vector < Player * > GroupList;
 
   PlayerList(string new_name) {
     name = new_name;
+    size = 0;
   }~PlayerList() =
   default; /* FIX ME*/
 
@@ -223,16 +227,26 @@ class PlayerList: public Player {
 
   void add(Player * a) {
     GroupList.push_back(a);
+    if(!is_composit()){
+      size += a->get_size(); 
+      cout<<"DEBUG1";}
+    else{size++;
+    cout<<"DEBUG2!";}
   }
 
   virtual bool cheatenable() {
     return false;
   }
 
+  virtual int get_size() {
+    return size;
+  }
+
   bool is_composit() {
     return true;
   }
 
+ 
   Player * getPlayer(string comparename) {
     for (auto s: GroupList) {
       if (s -> is_composit()) {

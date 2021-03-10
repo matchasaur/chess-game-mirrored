@@ -8,6 +8,7 @@
 #include <queue>
 #include <stack>
 
+
 class Spot{
 	int x;
 	int y;
@@ -48,6 +49,7 @@ public:
     void printBoard();
     void move(Board*, Spot* startBox, Spot* endBox);
     bool kingCaptured;
+    void printOptions(Board*);
 };
 class canMove{
     public:
