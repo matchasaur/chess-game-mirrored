@@ -2,6 +2,8 @@
 #define __FACTORY_HPP__
 
 #include "board.hpp"
+
+
 class MoveFactory {
   public:
     char type;
