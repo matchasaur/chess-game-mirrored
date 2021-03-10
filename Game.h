@@ -6,6 +6,8 @@
 #define _GAME_H
 #include "player.hpp"
 #include "board.hpp"
+using namespace std;
+
 
 /*enum color{White, Black};  now define in player.hpp with added functions
 
@@ -21,14 +23,16 @@
 class Game {
   private:
     color turn;
+  Board* chessBoard;
   Player * player1;
   Player * player2;
   PlayerList * queue;
 
   public:
-    void game_start();
-  int PrintMenu();
+  Game();
+  void game_start();
   void parseMove(stringstream& input, color playerTurn);
+  int PrintMenu();
   void Print_rules() const;
   void AddPlayer();
   void RandomChessQuotes() const;
