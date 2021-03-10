@@ -61,8 +61,9 @@ class PawnMove : public canMove{
     canMove* help;
     public:
     ~PawnMove(){}
-        PawnMove(){}
+     PawnMove(){}
     virtual bool move(Board* yeet, Spot* start, Spot* end){
+
     if(start->getPiece() == 'P'){
         if(start->getX() > end->getX()){
             return false;
@@ -344,5 +345,6 @@ class QueenMove : public canMove{
         return false;
     }
 };
+
 #endif
 
