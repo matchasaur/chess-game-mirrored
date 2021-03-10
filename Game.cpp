@@ -60,18 +60,16 @@ else if (queue->get_size()== 1) {cout<< "WINNER WINNER CHICKEN DINNER!\n" << "YO
   //display board
   chessBoard->printBoard();
   while (!player1 -> isCheckmate() || !player2 -> isCheckmate()) {
+
     if (turn == White) {
       cout << "White to options: " << endl;
     } //Declares whose turn is it
     else {
       cout << "Black to options: " << endl;
     }
-    chessBoard->printOptions(chessBoard);
-    //parse move to appropriate player
-    getline(cin, input);
-    stringstream move(input);
-    parseMove(move, turn);
 
+    //parse move to appropriate player
+    parseMove(turn);
     //display board
     chessBoard->printBoard();
     nextTurn();
@@ -169,10 +167,26 @@ void Game::declare_win() {
 }
 
 
-void Game::parseMove(stringstream &input, color playerTurn) {
+void Game::parseMove(color playerTurn) {
     pair<int, int> startCoords, endCoords;
-    string start, end;
-    input >> start >> end;
+    string start, end, input;
+    bool validInput = false;
+
+    while (!validInput) {
+        getline(cin, input);
+        if (input.empty()){
+            cout << "Invalid input!" << endl << "Please enter in valid notation (i.e. \"e2 e4\")" << endl;
+            continue;
+        }
+        stringstream move(input);
+
+        move >> start >> end;
+
+        if (validateInput(start) && validateInput(end)) {
+            validInput = true;
+        }
+        cout << "Invalid input!" << endl << "Please enter in valid notation (i.e. \"e2 e4\")" << endl;
+    }
 
     startCoords = getCoordinates(start);
     endCoords = getCoordinates(end);
@@ -195,8 +209,8 @@ pair<int, int> Game::getCoordinates(string coordinate) {
     file.insert(pair<char, int>('f', 5));
     file.insert(pair<char, int>('g', 6));
     file.insert(pair<char, int>('h', 7));
-    xyCoordinates.first = 8 - (coordinate.at(2) - '0');
-    xyCoordinates.second = file[coordinate.at(1)];
+    xyCoordinates.first = 8 - (coordinate.at(1) - '0');
+    xyCoordinates.second = file[coordinate.at(0)];
 
     return xyCoordinates;
 }
@@ -249,4 +263,11 @@ void Game::RandomChessQuotes() const {
 
   return;
 
+}
+
+bool Game::validateInput(string move) {
+    if (isalpha(move.at(0)) && (tolower(move.at(0)) == 'a' || tolower(move.at(0)) == 'b' || tolower(move.at(0)) =='c' || tolower(move.at(0)) == 'd' || tolower(move.at(0)) == 'e' || tolower(move.at(0)) == 'f' || tolower(move.at(0)) == 'g' || tolower(move.at(0)) == 'h')) {
+        return (((move.at(1) - '0') > -1) && ((move.at(1) - '0') < 9));
+    }
+    return false;
 }

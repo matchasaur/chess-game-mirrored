@@ -31,7 +31,7 @@ class Game {
   public:
   Game();
   void game_start();
-  void parseMove(stringstream& input, color playerTurn);
+  void parseMove(color playerTurn);
   int PrintMenu(Game* t);
   void Print_rules() const;
   void AddPlayer();
@@ -46,8 +46,11 @@ class Game {
       turn = White;
     }
   }
+
   void declare_win();
   pair<int, int> getCoordinates(string cordinate);
+  bool validateInput(string move);
+
 };
 //};
 
