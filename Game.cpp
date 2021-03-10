@@ -10,17 +10,22 @@
 
 #include <iostream>
 
+#include <sstream>
+
+
 using namespace std;
 
 Game::Game() {
   player1 = new HumanPlayer("Player1", White);
   player2 = new HumanPlayer("Player2", Black);
   queue = new PlayerList("Queue");
+  chessBoard = new Board();
   turn = White;
 
 }
 
 void Game::game_start() {
+  string input;
   string move;
   //instantiate board
   cout << "Let's play chess!" << endl;
@@ -29,6 +34,7 @@ void Game::game_start() {
   } // END THE GAME HERE
 
   //display board
+  chessBoard->printBoard();
   while (!player1 -> isCheckmate() || !player2 -> isCheckmate()) {
     if (turn == White) {
       cout << "White to move: " << endl;
@@ -38,10 +44,13 @@ void Game::game_start() {
     }
 
     //parse move to appropriate player
-    cin >> move;
-    //check if checkmate
-    //increment turn
-    nextTurn();
+    getline(cin, input);
+    stringstream move(input);
+    parseMove(move, turn);
+
+    //display board
+    chessBoard->printBoard();
+
   }
 
   declare_win(); //outputs the winner
@@ -160,7 +169,6 @@ void Game::RandomChessQuotes() const {
   return;
 
 }
-
 
 void Game::parseMove(stringstream &input, color playerTurn) {
     pair<int, int> startCoords, endCoords;
