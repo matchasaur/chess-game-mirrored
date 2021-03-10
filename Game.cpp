@@ -67,7 +67,7 @@ else if (queue->get_size()== 1) {cout<< "WINNER WINNER CHICKEN DINNER!\n" << "YO
     else {
       cout << "Black to options: " << endl;
     }
-
+    chessBoard->printOptions(chessBoard);
     //parse move to appropriate player
     parseMove(turn);
     //display board
@@ -185,7 +185,9 @@ void Game::parseMove(color playerTurn) {
         if (validateInput(start) && validateInput(end)) {
             validInput = true;
         }
-        cout << "Invalid input!" << endl << "Please enter in valid notation (i.e. \"e2 e4\")" << endl;
+        else{
+            cout << "Invalid input!" << endl << "Please enter in valid notation (i.e. \"e2 e4\")" << endl;
+        }
     }
 
     startCoords = getCoordinates(start);
