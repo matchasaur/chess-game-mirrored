@@ -6,7 +6,8 @@ ADD_SUBDIRECTORY(googletest)
 
 ADD_EXECUTABLE(test
     player_test.cpp
-    
+    board.cpp
+    game.cpp    
 )
 
 TARGET_LINK_LIBRARIES(test gtest)

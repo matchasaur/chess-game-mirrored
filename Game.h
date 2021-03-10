@@ -36,7 +36,7 @@ class Game {
   void Print_rules() const;
   void AddPlayer();
   void RandomChessQuotes() const;
-  Game();
+//  Game();
 
   //helpers
   void nextTurn() {
@@ -49,6 +49,6 @@ class Game {
   void declare_win();
   pair<int, int> getCoordinates(string cordinate);
 };
-};
+//};
 
 #endif //FINAL_PROJECT_DMIRZ001_JTANU002_FQUIR007_CWONG165_1_GAME_H
