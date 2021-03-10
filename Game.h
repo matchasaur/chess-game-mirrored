@@ -12,9 +12,11 @@ class Game {
   Player * player1;
   Player * player2;
   PlayerList * queue;
+  bool TournamentMode = false;
 
   public:
   Game();
+  ~Game();
   void game_start();
   void parseMove(stringstream& input, color playerTurn);
   int PrintMenu(Game* t);
