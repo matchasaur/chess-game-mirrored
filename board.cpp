@@ -37,12 +37,40 @@ void Board::resetBoard(){
 	boxes[7][7] = new Spot(7, 7, 'r');
 }
 void Board::printBoard(){
-    for(int i = 0; i < 8; ++i){
-        for(int j = 0; j < 8; ++j){
-            std::cout << boxes[i][j]->getPiece() << " ";
-        }
-		std::cout << endl;
-    }
+	std::cout << "  A B C D E F G H \n";
+	std::cout << "8 ";
+	for(int i = 0; i < 8; ++i){
+		std::cout << boxes[0][i]->getPiece() << ' ';
+	}
+	std::cout << "\n7 ";
+	for(int i = 0; i < 8; ++i){
+		std::cout << boxes[1][i]->getPiece() << ' ';
+	}
+	std::cout << "\n6 ";
+	for(int i = 0; i < 8; ++i){
+		std::cout << boxes[2][i]->getPiece() << ' ';
+	}
+	std::cout << "\n5 ";
+	for(int i = 0; i < 8; ++i){
+		std::cout << boxes[3][i]->getPiece() << ' ';
+	}
+	std::cout << "\n4 ";
+	for(int i = 0; i < 8; ++i){
+		std::cout << boxes[4][i]->getPiece() << ' ';
+	}
+	std::cout << "\n3 ";
+	for(int i = 0; i < 8; ++i){
+		std::cout << boxes[5][i]->getPiece() << ' ';
+	}
+	std::cout << "\n2 ";
+	for(int i = 0; i < 8; ++i){
+		std::cout << boxes[6][i]->getPiece() << ' ';
+	}
+	std::cout << "\n1 ";
+	for(int i = 0; i < 8; ++i){
+		std::cout << boxes[7][i]->getPiece() << " ";
+	}
+	std::cout << std::endl;
 }
 Spot* Board::getBox(int i, int j){
 	return boxes[i][j];
