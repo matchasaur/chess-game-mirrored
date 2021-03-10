@@ -17,65 +17,74 @@
 using namespace std;
 
 Game::Game() {
-  player1 = new HumanPlayer("Player1", White);
-  player2 = new HumanPlayer("Player2", Black);
+  player1 = nullptr;
+  player2 = nullptr;
   queue = new PlayerList("Queue");
   chessBoard = new Board();
   turn = White;
 
 }
 
+Game::~Game() {
+  delete player1;
+  delete player2;
+  delete chessBoard;
+  delete queue;
+}
 
 void Game::game_start() {
   string input;
   string move;
-  Player* winnerptr;
-  int winner = -2;
 
 
   cout << "Let's play chess!" << endl;
 
-  
+  if (queue -> get_size() > 1) {
 
-if(queue->get_size()>1){
-
-  string name1; 
-  string name2;
-  
-
-  delete player1;
-  delete player2;
-
-  cout<< queue->print_list();
-  cout<<"Who is player 1?(White)\n";
-  cin >> name1;
-  cout<< "Who is player 2?(Black)\n";
-  cin >> name2;
-
-  player1 = queue->getPlayer(name1);
-  player1->set_color(White);
-  player2 = queue->getPlayer(name2);
-  player1->set_color(Black);
-  player1->game_increment();
-  player2->game_increment();
-
-}
-else if (queue->get_size()== 1) {cout<< "WINNER WINNER CHICKEN DINNER!\n" << "YOU ARE THE TOURNAMENT CHAMPION!"; cout<< queue->print_list(); exit(1);}
+    string name1;
+    string name2;
 
 
-  chessBoard->printBoard();
+    cout << queue -> print_list();
+    cout << "Who is player 1?(White)\n";
+    cin >> name1;
+    cout << "Who is player 2?(Black)\n";
+    cin >> name2;
 
-  while (!player1 -> isCheckmate() || !player2 -> isCheckmate()) {
+
+    player1 = queue -> getPlayer(name1);
+    if(player1==nullptr){cout<<"PLYAER DNE\n\n";game_start();}
+    player1 -> set_color(White);
+    player2 = queue -> getPlayer(name2);
+    if(player2==nullptr){cout<<"PLYAER DNE\n\n";game_start();}
+    player1 -> set_color(Black);
+    player1 -> game_increment();
+    player2 -> game_increment();
+
+  } else if (queue -> get_size() == 1) {
+    cout << "WINNER WINNER CHICKEN DINNER!\n" << "YOU ARE THE TOURNAMENT CHAMPION!";
+    cout << queue -> print_list();
+    exit(0);
+  }
+
+  if (player1 == nullptr) {
+    player1 = new HumanPlayer("Player1", White);
+  }
+  if (player2 == nullptr) {
+    player2 = new HumanPlayer("Player2", Black);
+  }
+
+  chessBoard -> printBoard();
+
+  while (player1 -> isCheckmate() == 0 && player2 -> isCheckmate() == 0) {
 
     if (turn == White) {
       cout << "White to options: " << endl;
-    } 
-    else {
+    } else {
       cout << "Black to options: " << endl;
     }
 
     chessBoard->printOptions(chessBoard);
-
 
     //parse move to appropriate player
     parseMove(turn);
@@ -87,33 +96,60 @@ else if (queue->get_size()== 1) {cout<< "WINNER WINNER CHICKEN DINNER!\n" << "YO
 //     stringstream move(input);
 //     parseMove(move, turn);
 
-
-
-    chessBoard->printBoard();
+    chessBoard -> printBoard();
     nextTurn();
   }
-  if(winner==-2) {declare_win(chessBoard);}  //outputs the winner
-  
-  if(winner ==1){player1->win_increment(); winnerptr = player1;}
-  else if(winner ==2){player2->win_increment(); winnerptr = player2;}
-  else {PrintMenu(this);}
 
-  
-  if (queue->get_size()-1 == winnerptr->get_wincounter()) {cout<< "WINNER WINNER CHICKEN DINNER!\n" << "YOU ARE THE TOURNAMENT CHAMPION!"; exit(1);}
-  else{
-    char temp;
-    cout << "There are more players waiting to play with you in the queue, do you want to continute? Do you want to see your rank? (Y/N/R)\n";
-     cin >> temp;
-     if(temp == 'Y'){game_start();}
-     else if (temp == 'R') {winnerptr->print_status();}
-     else {exit(1);}
+
+  //cout << "DEBUG-1";
+
+  int winner = declare_win(); //outputs the winner
+
+  //cout << "DEBUG0";
+
+  if (TournamentMode == true) {
+
+    Player * winnerptr = nullptr;
+
+    //cout << "DEBUG";
+    if (winner == 1) {
+      winnerptr = player1;
+    } else if (winner == 2) {
+      winnerptr = player2;
+    }
+    if (winnerptr == nullptr) {
+      RandomChessQuotes();
+      exit(0);
+    }
+
+    //cout << "DEBUG2";
+    if (queue -> get_size() - 1 == winnerptr -> get_wincounter()) {
+      cout << endl << endl; 
+      cout << queue -> print_list() << endl;
+      cout << "WINNER WINNER CHICKEN DINNER!\n" << winnerptr->get_name() <<", YOU ARE THE TOURNAMENT CHAMPION!";
+      exit(0);
+    } else {
+      //cout << "DEBUG3";
+      string temp;
+      cout << "There are more players waiting to play with you in the queue, do you want to continute? Do you want to see your rank? (Y/N/R)\n";
+      cin.ignore();
+      if (temp == "Y") {
+        game_start();
+      } else if (temp == "R") {
+        cout << winnerptr -> print_status() << endl;
+        game_start();
+      } else if (temp == "N") {
+        RandomChessQuotes();
+        exit(0);
+      }
+    }
   }
-
+  //cout<<"out of bound";
+  RandomChessQuotes();
+  exit(0);
 }
 
-
-
-int Game::PrintMenu(Game* t) {
+int Game::PrintMenu(Game * t) {
   std: string menu_string;
   int option;
 
@@ -136,6 +172,7 @@ int Game::PrintMenu(Game* t) {
     PrintMenu(t);
     break;
   case 8:
+    TournamentMode = true;
     cin.ignore();
     this -> AddPlayer();
     t -> game_start();
@@ -159,48 +196,38 @@ int Game::PrintMenu(Game* t) {
 
 void Game::AddPlayer() {
   string input = "";
- 
+
   cout << "Enter New Player Name or \"NA\" to stop\n";
   cin >> input;
-  
 
   while (input != "NA") {
-  
+
     Player * temp = new HumanPlayer(input, White);
     queue -> add(temp);
-    
+
     cout << "Enter New Player Name or \"NA\" to stop\n";
 
     cin >> input;
-  
+
   }
 
- 
   return;
 }
 
-int Game::declare_win(Board* t) {
-  if (t -> WhitekingCaptured) {
+
+
+int Game::declare_win() {
+  if (player1 -> isCheckmate()) {
+    player2 -> win_increment();
     cout << "Black is victorious!" << endl;
-    return 1;
-  } else if (t -> BlackkingCaptured) {
-    cout << "White is victorious!" << endl;
     return 2;
+  } else if (player2 -> isCheckmate()) {
+    player1 -> win_increment();
+    cout << "White is victorious!" << endl;
+    return 1;
   }
   return -1; //tie
 }
-
-int Game::declare_win(int a) {
-  if (a == 1) {
-    cout << "Black is victorious!" << endl;
-    return 1;
-  } else if (a == 2) {
-    cout << "White is victorious!" << endl;
-    return 2;
-  }
-  return -1; //tie
-}
-
 
 
 void Game::parseMove(color playerTurn) {
@@ -215,8 +242,15 @@ void Game::parseMove(color playerTurn) {
             cout << "Invalid input!" << endl << "Please enter in valid notation (i.e. \"e2 e4\")" << endl;
             continue;
         }
-        stringstream move(input);
+        else if (input == "YOLO1") {
+            player2 -> instantCheckmate();
+            return;
+        } else if (input == "YOLO2") {
+            player1 -> instantCheckmate();
+            return;
+        }
 
+        stringstream move(input);
         move >> start >> end;
 
         if (validateInput(start) && validateInput(end)) {
@@ -227,33 +261,32 @@ void Game::parseMove(color playerTurn) {
         }
     }
 
-    startCoords = getCoordinates(start);
-    endCoords = getCoordinates(end);
+  startCoords = getCoordinates(start);
+  endCoords = getCoordinates(end);
 
-    cout << "StartCoords: " << startCoords.first << ", " << startCoords.second << endl;
-    cout << "EndCoords: " << endCoords.first << ", " << endCoords.second << endl;
-    
-    chessBoard->move(chessBoard, chessBoard->getBox(startCoords.first, startCoords.second), chessBoard->getBox(endCoords.first, endCoords.second));
+  cout << "StartCoords: " << startCoords.first << ", " << startCoords.second << endl;
+  cout << "EndCoords: " << endCoords.first << ", " << endCoords.second << endl;
+
+  chessBoard -> move(chessBoard, chessBoard -> getBox(startCoords.first, startCoords.second), chessBoard -> getBox(endCoords.first, endCoords.second));
 }
 
-pair<int, int> Game::getCoordinates(string coordinate) {
-    pair<int, int> xyCoordinates;
+pair < int, int > Game::getCoordinates(string coordinate) {
+  pair < int, int > xyCoordinates;
 
-    map<char, int> file;
-    file.insert(pair<char, int>('a', 0));
-    file.insert(pair<char, int>('b', 1));
-    file.insert(pair<char, int>('c', 2));
-    file.insert(pair<char, int>('d', 3));
-    file.insert(pair<char, int>('e', 4));
-    file.insert(pair<char, int>('f', 5));
-    file.insert(pair<char, int>('g', 6));
-    file.insert(pair<char, int>('h', 7));
-    xyCoordinates.first = 8 - (coordinate.at(1) - '0');
-    xyCoordinates.second = file[coordinate.at(0)];
+  map < char, int > file;
+  file.insert(pair < char, int > ('a', 0));
+  file.insert(pair < char, int > ('b', 1));
+  file.insert(pair < char, int > ('c', 2));
+  file.insert(pair < char, int > ('d', 3));
+  file.insert(pair < char, int > ('e', 4));
+  file.insert(pair < char, int > ('f', 5));
+  file.insert(pair < char, int > ('g', 6));
+  file.insert(pair < char, int > ('h', 7));
+  xyCoordinates.first = 8 - (coordinate.at(1) - '0');
+  xyCoordinates.second = file[coordinate.at(0)];
 
-    return xyCoordinates;
+  return xyCoordinates;
 }
-
 
 /*clean*/
 
@@ -301,6 +334,7 @@ void Game::RandomChessQuotes() const {
   }
 
   return;
+
 
 }
 

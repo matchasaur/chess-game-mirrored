@@ -100,6 +100,7 @@ void Board::printOptions(Board* w){
     std::cout << "Resetting the board! \n";
     w->resetBoard();
     w->printBoard();
+    
     break;
   }
 }
@@ -135,4 +136,3 @@ void Board::undo(){
 	delete end;
 	delete start;
 }
-

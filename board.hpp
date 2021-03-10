@@ -51,6 +51,11 @@ public:
     bool WhitekingCaptured = false;
     bool BlackkingCaptured = false;
     void printOptions(Board*);
+
+    void Capture(int i){
+      if (i == 1){BlackkingCaptured=true;} 
+      else if(i==2){WhitekingCaptured=true;}
+    }
 };
 class canMove{
     public:
@@ -357,4 +362,3 @@ class QueenMove : public canMove{
 };
 
 #endif
-

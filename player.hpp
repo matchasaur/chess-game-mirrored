@@ -52,6 +52,9 @@ class Player {
     return wincounter;
   }
 
+  virtual void instantwin(){
+    checkmate = true;
+  }
 
   virtual void set_name(string a) {
     name = a;
@@ -66,6 +69,11 @@ class Player {
   virtual bool isCheckmate() {
     return checkmate;
   }
+
+  virtual void instantCheckmate() {
+    checkmate = true;
+  }
+
 
   virtual bool isHumanPlayer() const {
     return humanPlayer;
@@ -227,8 +235,16 @@ class PlayerList: public Player {
   PlayerList(string new_name) {
     name = new_name;
     size = 0;
-  }~PlayerList() =
-  default; /* FIX ME*/
+  }
+  ~PlayerList(){
+    for (auto s: GroupList) {
+      if (s -> is_composit()) {
+        delete[] s;
+      } else {
+        delete s;
+      }
+    } 
+  }
 
   string get_group_name() {
     return name;
