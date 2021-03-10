@@ -5,7 +5,10 @@
 #include<map>
 #include<list>
 #include <stdlib.h>
-using namespace std;
+#include "canMove.hpp"
+#include <queue>
+#include <stack>
+
 class Spot{
 	int x;
 	int y;
@@ -24,23 +27,28 @@ public:
 	void setX(int x){this->x = x;}
 	int getY(){return this->y;}
 	void setY(int y) {this->y = y;}
+
 };
 
 class Board{
 	Spot* boxes[8][8];
+    
 public:
-	~Board(){
-	for(int i = 0; i < 8; ++i){
-		for(int j = 0; j < 8; ++i){
-			delete boxes[i][j];
-		}
-	  }
-	}
+    stack<Spot*> history;
 	Board();
+	~Board(){
+	 for(int i = 0; i < 8; ++i){
+		for (int j = 0; j < 8; ++j){
+			delete boes[i][j])
+		}
+	}
+	}
 	void resetBoard();
+    void undo();
 	Spot* getBox(int, int);
     void printBoard();
     void move(Board*, Spot* startBox, Spot* endBox);
+    bool kingCaptured;
 };
 class canMove{
     public:
@@ -52,16 +60,18 @@ class PawnMove : public canMove{
 
     canMove* help;
     public:
-	~PawnMove(){}
-        PawnMove(){
-        }
-    virtual bool move(Board*, Spot* start, Spot* end){
+    ~PawnMove(){}
+        PawnMove(){}
+    virtual bool move(Board* yeet, Spot* start, Spot* end){
     if(start->getPiece() == 'P'){
-	if(start->getX() > end->getX()){
+        if(start->getX() > end->getX()){
             return false;
         }
         if(end->getPiece() != 'P' && end->getPiece() != 'R' && end->getPiece() != 'B' && end->getPiece() != 'N' && end->getPiece() != 'Q' && end->getPiece() != 'K' && end->getPiece() != '-' ){
             if(end->getY() != start->getY() && ((end->getX() == start->getX() + 1) || (end->getX() == start->getX() - 1)) ){
+                if(end->getPiece() == 'k'){
+                    yeet->kingCaptured = true;
+                }
                 end->setPiece(start->getPiece());
 			    start->setPiece('-');
                return true;
@@ -69,11 +79,14 @@ class PawnMove : public canMove{
         }
     }
     if(start->getPiece() == 'p'){
-	if(start->getX() < end->getX()){
+        if(end->getX() > start->getX()){
             return false;
         }
         if(end->getPiece() != 'p' && end->getPiece() != 'r' && end->getPiece() != 'b' && end->getPiece() != 'n' && end->getPiece() != 'q' && end->getPiece() != 'k' && end->getPiece() != '-' ){
             if(end->getY() != start->getY() && ((end->getX() == start->getX() + 1) || (end->getX() == start->getX() - 1)) ){
+                if(end->getPiece() == 'K'){
+                    yeet->kingCaptured = true;
+                }
                 end->setPiece(start->getPiece());
 			    start->setPiece('-');
                return true;
@@ -111,6 +124,9 @@ class RookMove : public canMove{
                             return false;
                         }
                     }
+                    if(end->getPiece() == 'k'){
+                        yeet->kingCaptured = true;
+                    }
                         end->setPiece(start->getPiece());
 		                start->setPiece('-');
                         return true;
@@ -135,6 +151,9 @@ class RookMove : public canMove{
                             return false;
                         }
                     }
+                    if(end->getPiece() == 'K'){
+                        yeet->kingCaptured = true;
+                    }
                             end->setPiece(start->getPiece());
 		                    start->setPiece('-');
                             return true;
@@ -155,6 +174,7 @@ class RookMove : public canMove{
         return false;
     }
 };
+
 class KnightMove : public canMove{
     public:
     ~KnightMove(){}
@@ -163,6 +183,9 @@ class KnightMove : public canMove{
         if(start->getPiece() == 'N'){
             if(end->getPiece() != 'P' && end->getPiece() != 'R' && end->getPiece() != 'B' && end->getPiece() != 'N' && end->getPiece() != 'Q' && end->getPiece() != 'K' ){
                 if( ( abs(start->getX() - end->getX()) == 1 || abs(start->getX() - end->getX()) == 2 ) && (abs(start->getX() - end->getX()) == 1 || abs(start->getX() - end->getX()) == 2) && (abs(start->getX() - end->getX()) != abs(start->getY() - end->getY()) )){
+                    if(end->getPiece() == 'k'){
+                        yeet->kingCaptured = true;
+                    }
                     end->setPiece(start->getPiece());
 		            start->setPiece('-');
                     return true;
@@ -173,6 +196,9 @@ class KnightMove : public canMove{
         if(start->getPiece() == 'n'){
             if(end->getPiece() != 'p' && end->getPiece() != 'r' && end->getPiece() != 'b' && end->getPiece() != 'n' && end->getPiece() != 'q' && end->getPiece() != 'q' ){
                 if( ( abs(start->getX() - end->getX()) == 1 || abs(start->getX() - end->getX()) == 2 ) && (abs(start->getX() - end->getX()) == 1 || abs(start->getX() - end->getX()) == 2) && (abs(start->getX() - end->getX()) != abs(start->getY() - end->getY()) )){
+                    if(end->getPiece() == 'K'){
+                        yeet->kingCaptured = true;
+                    }
                     end->setPiece(start->getPiece());
 		            start->setPiece('-');
                     return true;
@@ -182,6 +208,7 @@ class KnightMove : public canMove{
         return false;
     }
 };
+
 class KingMove : public canMove{
     public:
     ~KingMove(){}
@@ -190,6 +217,9 @@ class KingMove : public canMove{
         if(start->getPiece() == 'K'){
             if(end->getPiece() != 'P' && end->getPiece() != 'R' && end->getPiece() != 'B' && end->getPiece() != 'N' && end->getPiece() != 'Q' ){
                 if((abs(start->getX() - end->getX()) <= 1) && (abs(start->getY() - end->getY()) <= 1) ){
+                    if(end->getPiece() == 'k'){
+                        yeet->kingCaptured = true;
+                    }
                     end->setPiece(start->getPiece());
 		            start->setPiece('-');
                     return true;
@@ -199,6 +229,9 @@ class KingMove : public canMove{
         if(start->getPiece() == 'k'){
             if(end->getPiece() != 'p' && end->getPiece() != 'r' && end->getPiece() != 'b' && end->getPiece() != 'n' && end->getPiece() != 'q' ){
                 if((abs(start->getX() - end->getX()) <= 1) && (abs(start->getY() - end->getY()) <= 1) ){
+                    if(end->getPiece() == 'K'){
+                        yeet->kingCaptured = true;
+                    }
                     end->setPiece(start->getPiece());
 		            start->setPiece('-');
                     return true;
@@ -208,6 +241,7 @@ class KingMove : public canMove{
         return false;
     }
 };
+
 class BishopMove : public canMove{
     public:
     ~BishopMove(){}
@@ -234,6 +268,9 @@ class BishopMove : public canMove{
                         }
                     
                     }
+                }
+                if(end->getPiece() == 'k'){
+                    yeet->kingCaptured = true;
                 }
                 end->setPiece(start->getPiece());
 		        start->setPiece('-');
@@ -265,6 +302,9 @@ class BishopMove : public canMove{
                 }
                 }
             }
+            if(end->getPiece() == 'K'){
+                    yeet->kingCaptured = true;
+                }
             end->setPiece(start->getPiece());
 		    start->setPiece('-');
             return true;
@@ -281,12 +321,27 @@ class QueenMove : public canMove{
     virtual bool move(Board* yeet, Spot* start, Spot* end){
         if(start->getPiece() == 'Q'){
             if(end->getPiece() != 'P' && end->getPiece() != 'R' && end->getPiece() != 'B' && end->getPiece() != 'N' && end->getPiece() != 'Q' && end->getPiece() != 'K' ){
+                return false;
+            }
+            if(end->getPiece() == 'k'){
+                    yeet->kingCaptured = true;
+                }
             end->setPiece(start->getPiece());
-                    start->setPiece('-');
+		    start->setPiece('-');
             return true;
-		}
         }
-	return false;
+        if(start->getPiece() == 'q'){
+            if(end->getPiece() != 'p' && end->getPiece() != 'r' && end->getPiece() != 'b' && end->getPiece() != 'n' && end->getPiece() != 'q' && end->getPiece() != 'k' ){
+                return false;
+            }
+            if(end->getPiece() == 'K'){
+                    yeet->kingCaptured = true;
+                }
+            end->setPiece(start->getPiece());
+		    start->setPiece('-');
+            return true;
+        }
+        return false;
     }
 };
 #endif

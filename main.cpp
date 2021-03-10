@@ -6,19 +6,18 @@ int main(){
     Board* f = new Board();
     f->printBoard();
 
-    int startX = 0;
-    int startY = 0;
-    int endX=0;
-    int endY=0;
-    for(int i = 0; i < 2; ++i){
+    int startX,startY,endX,endY;
+    f->kingCaptured = false;
+    while(f->kingCaptured != true){
     cin >> startX;
     cin >> startY;
     cin >> endX;
     cin >> endY;
 
-    f->move(f,f->getBox(startX, startY), f->getBox(endX,endY));
+    f->move(f, f->getBox(startX, startY), f->getBox(endX,endY));
     f->printBoard();
+
     }
-	delete f;
+	//delete f;
     return 0;
 }
