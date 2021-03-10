@@ -4,7 +4,7 @@
 
 class MoveFactory {
   public:
-    canMove * make_canMove(char type,bool a) {
+    canMove * make_canMove(char type) {
     /*  Promotion in chess is a rule that requires a pawn that reaches the eighth rank to be 
  *  replaced by the player's choice of a bishop, knight, rook, or queen of the same color .*/
 /* "Choose Your Promotion by entering one of the following (R/Q/B/K)\nR: Rook\n\nQ: Queen\n\nB: Bishop\n\nK: Knight\n" */
@@ -12,22 +12,22 @@ class MoveFactory {
 
 try {
         if (type == 'R' || 'r') {
-          return new RookMove(a);
+          return new RookMove();
         }
         if (type == 'Q' || 'q') {
-          return new QueenMove(a);
+          return new QueenMove();
         }
         if (type == 'B' || 'b') {
-          return new BishopMove(a);
+          return new BishopMove();
         }
         if (type == 'K' || 'k') {
-          return new KingMove(a);
+          return new KingMove();
         }
         if (type == 'N' || 'n') {
-          return new KnightMove(a);
+          return new KnightMove();
         }
         if (type == 'P' || 'p') {
-          return new PawnMove(a);
+          return new PawnMove();
         }
         else {
           throw 1;
