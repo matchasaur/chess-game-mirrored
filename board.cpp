@@ -84,9 +84,9 @@ void Board::move(Board*, Spot* startBox, Spot* endBox){
 	Spot* end = endBox;
 	history.push(new Spot(start->getX(), start->getY(), start->getPiece()));
 	history.push(new Spot(end->getX(), end->getY(), end->getPiece()));
-  
-  canMove* mover = new canMove(start->getPiece());
-
+  MoveFactory f; 
+  canMove* mover = f.make_canMove(start->getPiece()); 
+ // canMove* mover = new PawnMove();
   if(!mover->move(this, start, end)|| mover == nullptr){
 			history.pop();
 			history.pop();
