@@ -1,3 +1,7 @@
+//
+// Created by Jared on 3/7/2021.
+// Modified by Chun on 3/9/2021. /// Merge with PlayerClass
+
 #include "Game.h"
 
 #include "player.hpp"
@@ -32,6 +36,7 @@ void Game::game_start() {
   string input;
   string move;
 
+
   cout << "Let's play chess!" << endl;
 
   if (queue -> get_size() > 1) {
@@ -39,8 +44,6 @@ void Game::game_start() {
     string name1;
     string name2;
 
-    // delete player1;
-    // delete player2;
 
     cout << queue -> print_list();
     cout << "Who is player 1?(White)\n";
@@ -72,31 +75,31 @@ void Game::game_start() {
   }
 
   chessBoard -> printBoard();
-  while (!player1 -> isCheckmate() || !player2 -> isCheckmate()) {
+
+  while (player1 -> isCheckmate() == 0 && player2 -> isCheckmate() == 0) {
+
     if (turn == White) {
       cout << "White to options: " << endl;
     } else {
       cout << "Black to options: " << endl;
     }
-    chessBoard -> printOptions(chessBoard);
 
-    //cin.ignore();
-    getline(cin, input);
+    chessBoard->printOptions(chessBoard);
 
-    if (input == ("YOLO1")) {
-      player2 -> instantCheckmate();
-      break;
-    } else if (input == ("YOLO2")) {
-      player1 -> instantCheckmate();
-      break;
-    }
+    //parse move to appropriate player
+    parseMove(turn);
+    //display board
 
-    stringstream move(input);
-    parseMove(move, turn);
+//     chessBoard->printOptions(chessBoard);
+
+//     getline(cin, input);
+//     stringstream move(input);
+//     parseMove(move, turn);
 
     chessBoard -> printBoard();
     nextTurn();
   }
+
 
   //cout << "DEBUG-1";
 
@@ -211,6 +214,8 @@ void Game::AddPlayer() {
   return;
 }
 
+
+
 int Game::declare_win() {
   if (player1 -> isCheckmate()) {
     player2 -> win_increment();
@@ -224,10 +229,37 @@ int Game::declare_win() {
   return -1; //tie
 }
 
-void Game::parseMove(stringstream & input, color playerTurn) {
-  pair < int, int > startCoords, endCoords;
-  string start, end;
-  input >> start >> end;
+
+void Game::parseMove(color playerTurn) {
+
+    pair<int, int> startCoords, endCoords;
+    string start, end, input;
+    bool validInput = false;
+
+    while (!validInput) {
+        getline(cin, input);
+        if (input.empty()){
+            cout << "Invalid input!" << endl << "Please enter in valid notation (i.e. \"e2 e4\")" << endl;
+            continue;
+        }
+        else if (input == "YOLO1") {
+            player2 -> instantCheckmate();
+            return;
+        } else if (input == "YOLO2") {
+            player1 -> instantCheckmate();
+            return;
+        }
+
+        stringstream move(input);
+        move >> start >> end;
+
+        if (validateInput(start) && validateInput(end)) {
+            validInput = true;
+        }
+        else{
+            cout << "Invalid input!" << endl << "Please enter in valid notation (i.e. \"e2 e4\")" << endl;
+        }
+    }
 
   startCoords = getCoordinates(start);
   endCoords = getCoordinates(end);
@@ -250,8 +282,8 @@ pair < int, int > Game::getCoordinates(string coordinate) {
   file.insert(pair < char, int > ('f', 5));
   file.insert(pair < char, int > ('g', 6));
   file.insert(pair < char, int > ('h', 7));
-  xyCoordinates.first = 8 - (coordinate.at(2) - '0');
-  xyCoordinates.second = file[coordinate.at(1)];
+  xyCoordinates.first = 8 - (coordinate.at(1) - '0');
+  xyCoordinates.second = file[coordinate.at(0)];
 
   return xyCoordinates;
 }
@@ -303,4 +335,12 @@ void Game::RandomChessQuotes() const {
 
   return;
 
+
+}
+
+bool Game::validateInput(string move) {
+    if (isalpha(move.at(0)) && (tolower(move.at(0)) == 'a' || tolower(move.at(0)) == 'b' || tolower(move.at(0)) =='c' || tolower(move.at(0)) == 'd' || tolower(move.at(0)) == 'e' || tolower(move.at(0)) == 'f' || tolower(move.at(0)) == 'g' || tolower(move.at(0)) == 'h')) {
+        return (((move.at(1) - '0') > -1) && ((move.at(1) - '0') < 9));
+    }
+    return false;
 }

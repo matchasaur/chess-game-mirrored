@@ -1,3 +1,7 @@
+//
+// Created by Jared on 3/7/2021.
+// Modified by Chun on 3/9/2021. /// Merge with PlayerClass
+
 #ifndef _GAME_H
 #define _GAME_H
 #include "player.hpp"
@@ -18,11 +22,12 @@ class Game {
   Game();
   ~Game();
   void game_start();
-  void parseMove(stringstream& input, color playerTurn);
+  void parseMove(color playerTurn);
   int PrintMenu(Game* t);
   void Print_rules() const;
   void AddPlayer();
   void RandomChessQuotes() const;
+
 
 
 
@@ -33,10 +38,16 @@ class Game {
       turn = White;
     }
   }
-  int declare_win();
+
+
+
+  int declare_win(Board*);
+  int declare_win(int);
+
   pair<int, int> getCoordinates(string cordinate);
+  bool validateInput(string move);
+
 };
 
 
 #endif //FINAL_PROJECT_DMIRZ001_JTANU002_FQUIR007_CWONG165_1_GAME_H
-
