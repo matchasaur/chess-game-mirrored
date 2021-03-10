@@ -136,4 +136,3 @@ void Board::undo(){
 	delete start;
 }
 
-

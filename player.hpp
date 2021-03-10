@@ -1,3 +1,5 @@
+/* Created by Chun on 3/7/2021.*/
+
 #ifndef PLAYER_HPP
 #define PLAYER_HPP
 
@@ -286,4 +288,3 @@ class PlayerList: public Player {
 };
 
 #endif //PLAYER_HPP
-

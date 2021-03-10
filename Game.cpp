@@ -1,3 +1,7 @@
+//
+// Created by Jared on 3/7/2021.
+// Modified by Chun on 3/9/2021. /// Merge with PlayerClass
+
 #include "Game.h"
 
 #include "player.hpp"
@@ -25,7 +29,8 @@ Game::Game() {
 void Game::game_start() {
   string input;
   string move;
- 
+  Player* winnerptr;
+  int winner = -2;
 
 
   cout << "Let's play chess!" << endl;
@@ -36,6 +41,7 @@ if(queue->get_size()>1){
 
   string name1; 
   string name2;
+  
 
   delete player1;
   delete player2;
@@ -58,13 +64,14 @@ else if (queue->get_size()== 1) {cout<< "WINNER WINNER CHICKEN DINNER!\n" << "YO
 
 
   chessBoard->printBoard();
-  while (!player1 -> isCheckmate() || !player2 -> isCheckmate()) {
+  while (!chessBoard->WhitekingCaptured || !chessBoard -> BlackkingCaptured) {
     if (turn == White) {
       cout << "White to options: " << endl;
     } 
     else {
       cout << "Black to options: " << endl;
     }
+    
     chessBoard->printOptions(chessBoard);
 
     getline(cin, input);
@@ -75,11 +82,11 @@ else if (queue->get_size()== 1) {cout<< "WINNER WINNER CHICKEN DINNER!\n" << "YO
     chessBoard->printBoard();
     nextTurn();
   }
-  int winner = declare_win(); //outputs the winner
+  if(winner==-2) {declare_win(chessBoard);}  //outputs the winner
   
-  if(winner ==1){player1->win_increment();Player* winnerptr = player1;}
-  else if(winner ==2){player2->win_increment();Player* winnerptr = player2;}
-  Player* winnerptr = nullptr;
+  if(winner ==1){player1->win_increment(); winnerptr = player1;}
+  else if(winner ==2){player2->win_increment(); winnerptr = player2;}
+  else {PrintMenu(this);}
 
   
   if (queue->get_size()-1 == winnerptr->get_wincounter()) {cout<< "WINNER WINNER CHICKEN DINNER!\n" << "YOU ARE THE TOURNAMENT CHAMPION!"; exit(1);}
@@ -162,16 +169,28 @@ void Game::AddPlayer() {
   return;
 }
 
-int Game::declare_win() {
-  if (player1 -> isCheckmate()) {
+int Game::declare_win(Board* t) {
+  if (t -> WhitekingCaptured) {
     cout << "Black is victorious!" << endl;
     return 1;
-  } else if (player2 -> isCheckmate()) {
+  } else if (t -> BlackkingCaptured) {
     cout << "White is victorious!" << endl;
     return 2;
   }
   return -1; //tie
 }
+
+int Game::declare_win(int a) {
+  if (a == 1) {
+    cout << "Black is victorious!" << endl;
+    return 1;
+  } else if (a == 2) {
+    cout << "White is victorious!" << endl;
+    return 2;
+  }
+  return -1; //tie
+}
+
 
 
 void Game::parseMove(stringstream &input, color playerTurn) {
