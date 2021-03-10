@@ -3,16 +3,10 @@
 #include "player.hpp"
 #include "Game.h"
 #include "board.hpp"
-
+#include "board_test.hpp"
 int main(int argc, char ** argv) {
   ::testing::InitGoogleTest( & argc, argv);
   return RUN_ALL_TESTS();
-}
-TEST(Board, SimpleMoveTest){
-        Board* f = new Board();
-        f->move(f, f->getBox(1,0),f->getBox(3,0));
-        EXPECT_EQ('P', f->getBox(3,0)->getPiece());
-        EXPECT_EQ('-', f->getBox(1,0)->getPiece());
 }
 
 TEST(PLAYER, SIMPLETEST1) {
