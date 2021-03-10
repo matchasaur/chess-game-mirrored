@@ -237,13 +237,16 @@ class PlayerList: public Player {
     size = 0;
   }
   ~PlayerList(){
-    for (auto s: GroupList) {
-      if (s -> is_composit()) {
-        delete[] s;
-      } else {
-        delete s;
-      }
-    } 
+
+
+    /*
+ *     for (auto s: GroupList) {
+ *           if (s -> is_composit()) {
+ *                   delete[] s;
+ *                         } else {
+ *                                 delete s;
+ *                                       }
+ *                                           } */
   }
 
   string get_group_name() {
@@ -304,3 +307,4 @@ class PlayerList: public Player {
 };
 
 #endif //PLAYER_HPP
+
