@@ -1,4 +1,5 @@
 #include "board.hpp"
+#include "factory.hpp"
 #include <iostream>
 #include <queue>
 using namespace std;
