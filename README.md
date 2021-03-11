@@ -146,7 +146,7 @@ Tournament Mode:
  The game is design to simply allow users to integrate into another program. Just simply include "board.hpp" and "Game.h" Make a new Game* f = new Game();
   and call f->PrintMenu(f), it would handle the game internally. Remember to delete f once you finish the game.
   
- <img width="186" alt="Screen Shot 2021-03-10 at 5 52 36 PM" src="https://user-images.githubusercontent.com/77028662/110724628-fd6ba800-81ca-11eb-8899-f3f28deb2278.png">
+ <img width="300" alt="Screen Shot 2021-03-10 at 5 52 36 PM" src="https://user-images.githubusercontent.com/77028662/110724628-fd6ba800-81ca-11eb-8899-f3f28deb2278.png">
  
  
  ## Testing
