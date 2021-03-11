@@ -43,9 +43,8 @@ public:
 		}
 	}
 	 while(!history.empty()){
-	     Spot* temp = history.top();
-	     history.pop();
-	     delete temp;
+        delete history.top();
+        history.pop();
 	 }
 	 
 	}
