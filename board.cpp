@@ -8,6 +8,13 @@ Board::Board(){
 	resetBoard();
 }
 void Board::resetBoard(){
+    //deletes old board
+    for(int i = 0; i < 8; ++i){
+        for (int j = 0; j < 8; ++j){
+            delete boxes[i][j];
+        }
+    }
+    
 	boxes[0][0] = new Spot(0, 0, 'R');
 	boxes[0][1] = new Spot(0, 1, 'N');
 	boxes[0][2] = new Spot(0, 2, 'B');

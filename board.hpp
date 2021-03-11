@@ -46,7 +46,7 @@ public:
         delete history.top();
         history.pop();
 	 }
-	 
+
 	}
 	void resetBoard();
     void undo();
