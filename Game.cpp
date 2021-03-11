@@ -1,6 +1,6 @@
-//
-// Created by Jared on 3/7/2021.
-// Modified by Chun on 3/9/2021. /// Merge with PlayerClass
+/*
+ Created by Jared on 3/7/2021.
+ Modified by Chun on 3/9/2021. /*/ //Merge with PlayerClass*/
 
 #include "Game.h"
 
@@ -64,6 +64,7 @@ void Game::game_start() {
   } else if (queue -> get_size() == 1) {
     cout << "WINNER WINNER CHICKEN DINNER!\n" << "YOU ARE THE TOURNAMENT CHAMPION!";
     cout << queue -> print_list();
+    this->~Game();
     exit(0);
   }
 
@@ -86,32 +87,31 @@ void Game::game_start() {
 
     chessBoard->printOptions(chessBoard);
 
-    //parse move to appropriate player
+    /*parse move to appropriate player */
     parseMove(turn);
-    //display board
+    /*display board */
 
-//     chessBoard->printOptions(chessBoard);
+/*     chessBoard->printOptions(chessBoard); */
 
-//     getline(cin, input);
-//     stringstream move(input);
-//     parseMove(move, turn);
+/*     getline(cin, input); */
+/*     stringstream move(input); */
+/*     parseMove(move, turn); */
 
     chessBoard -> printBoard();
     nextTurn();
   }
 
 
-  //cout << "DEBUG-1";
+  /*cout << "DEBUG-1"; */
+  int winner = declare_win(); /*outputs the winner */
 
-  int winner = declare_win(); //outputs the winner
-
-  //cout << "DEBUG0";
+  /*cout << "DEBUG0"; */
 
   if (TournamentMode == true) {
 
     Player * winnerptr = nullptr;
 
-    //cout << "DEBUG";
+    /*cout << "DEBUG"; */
     if (winner == 1) {
       winnerptr = player1;
     } else if (winner == 2) {
@@ -119,21 +119,23 @@ void Game::game_start() {
     }
     if (winnerptr == nullptr) {
       RandomChessQuotes();
+      this->~Game();
       exit(0);
     }
 
-    //cout << "DEBUG2";
+    /*cout << "DEBUG2"; */
     if (queue -> get_size() - 1 == winnerptr -> get_wincounter()) {
       cout << endl << endl; 
       cout << queue -> print_list() << endl;
       cout << "WINNER WINNER CHICKEN DINNER!\n" << winnerptr->get_name() <<", YOU ARE THE TOURNAMENT CHAMPION!";
+      this->~Game();
       exit(0);
     } else {
-      //cout << "DEBUG3";
+      /*cout << "DEBUG3"; */
       string temp;
       cout << "There are more players waiting to play with you in the queue, do you want to continute? Do you want to see your rank? (Y/N/R)\n";
       cin >> temp;
-      //cin.ignore();
+      /*cin.ignore(); */
       if (temp == "Y") {
         game_start();
       } else if (temp == "R") {
@@ -145,8 +147,9 @@ void Game::game_start() {
       }
     }
   }
-  //cout<<"out of bound";
+  /*cout<<"out of bound"; */
   RandomChessQuotes();
+  this->~Game();
   exit(0);
 }
 
@@ -227,7 +230,7 @@ int Game::declare_win() {
     cout << "White is victorious!" << endl;
     return 1;
   }
-  return -1; //tie
+  return -1; /*tie */
 }
 
 
