@@ -132,6 +132,7 @@ void Game::game_start() {
       //cout << "DEBUG3";
       string temp;
       cout << "There are more players waiting to play with you in the queue, do you want to continute? Do you want to see your rank? (Y/N/R)\n";
+      cin >> temp;
       cin.ignore();
       if (temp == "Y") {
         game_start();
