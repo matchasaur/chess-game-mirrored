@@ -42,6 +42,11 @@ public:
 			delete boxes[i][j];
 		}
 	}
+	 while(!history.empty()){
+        delete history.top();
+        history.pop();
+	 }
+	 
 	}
 	void resetBoard();
     void undo();
