@@ -339,6 +339,9 @@ void Game::RandomChessQuotes() const {
 }
 
 bool Game::validateInput(string move) {
+    if (move.empty()){
+        return false;
+    }
     if (isalpha(move.at(0)) && (tolower(move.at(0)) == 'a' || tolower(move.at(0)) == 'b' || tolower(move.at(0)) =='c' || tolower(move.at(0)) == 'd' || tolower(move.at(0)) == 'e' || tolower(move.at(0)) == 'f' || tolower(move.at(0)) == 'g' || tolower(move.at(0)) == 'h')) {
         return (((move.at(1) - '0') > -1) && ((move.at(1) - '0') < 9));
     }

@@ -1,9 +1,9 @@
 #include "gtest/gtest.h"
-
-#include "player.hpp"
-#include "Game.h"
-#include "board.hpp"
-#include "board_test.hpp"
+#include "Game_test.h"
+//#include "player.hpp"
+////#include "Game.h"
+////#include "board.hpp"
+////#include "board_test.hpp"
 int main(int argc, char ** argv) {
   ::testing::InitGoogleTest( & argc, argv);
   return RUN_ALL_TESTS();
