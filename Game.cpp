@@ -186,6 +186,7 @@ int Game::PrintMenu(Game * t) {
     cout << "Have a good day!\n";
     RandomChessQuotes();
     return 2;
+    this->~Game();
     exit(1);
     break;
 
