@@ -64,6 +64,7 @@ void Game::game_start() {
   } else if (queue -> get_size() == 1) {
     cout << "WINNER WINNER CHICKEN DINNER!\n" << "YOU ARE THE TOURNAMENT CHAMPION!";
     cout << queue -> print_list();
+    this->~Game();
     exit(0);
   }
 
@@ -119,6 +120,7 @@ void Game::game_start() {
     }
     if (winnerptr == nullptr) {
       RandomChessQuotes();
+      this->~Game();
       exit(0);
     }
 
@@ -127,6 +129,7 @@ void Game::game_start() {
       cout << endl << endl; 
       cout << queue -> print_list() << endl;
       cout << "WINNER WINNER CHICKEN DINNER!\n" << winnerptr->get_name() <<", YOU ARE THE TOURNAMENT CHAMPION!";
+      this->~Game();
       exit(0);
     } else {
       /*cout << "DEBUG3";*/
@@ -147,6 +150,7 @@ void Game::game_start() {
   }
   /*cout<<"out of bound";*/
   RandomChessQuotes();
+  this->~Game();
   exit(0);
 }
 
@@ -183,6 +187,7 @@ int Game::PrintMenu(Game * t) {
     cout << "Have a good day!\n";
     RandomChessQuotes();
     return 2;
+    this->~Game();
     exit(1);
     break;
 
