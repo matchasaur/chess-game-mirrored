@@ -108,30 +108,65 @@ Class Description:
 - The game itself is an interface with the user. Allowing them to play the game.
 
 
-
-
-
- 
 ## Phase III (Meeting With TA; Done)
 
 
+ ## Final deliverable
  
+ * Plan one more sprint record on the Kanban board.  (Done)
+ 
+ ## Screenshots
+ Screenshots of the input/output after running your application
+![Normal GamePlay 1V1](https://user-images.githubusercontent.com/77028662/110723176-803f3380-81c8-11eb-9830-961b4f63be4b.png)
+![1V1 Game Win](https://user-images.githubusercontent.com/77028662/110723178-80d7ca00-81c8-11eb-85fd-a3db7c27c5c6.png)
+![Print Rules](https://user-images.githubusercontent.com/77028662/110723181-80d7ca00-81c8-11eb-837c-5e82773d70cb.png)
+![Exit Game](https://user-images.githubusercontent.com/77028662/110723182-80d7ca00-81c8-11eb-932e-f4e13bb3c0a0.png)
+![3PLAYERS](https://user-images.githubusercontent.com/77028662/110723183-81706080-81c8-11eb-8c24-af8abcfce077.png)
+Starting a game and Moving
+
+<img width="549" alt="Screen Shot 2021-03-10 at 5 41 40 PM" src="https://user-images.githubusercontent.com/77082321/110724435-9d750180-81ca-11eb-9fb3-1d0a2546fd78.png">
+Swaping sides and moving 
+
+<img width="549" alt="Screen Shot 2021-03-10 at 5 41 40 PM" src="https://user-images.githubusercontent.com/77082321/110724459-aa91f080-81ca-11eb-89d0-ba365d29f2e9.png">
+Resetting the Board
+
+<img width="186" alt="Screen Shot 2021-03-10 at 5 52 36 PM" src="https://user-images.githubusercontent.com/77082321/110724616-f5ac0380-81ca-11eb-888a-b0d6db63a9a3.png">
+
+Tournament Mode:
+![RANK2](https://user-images.githubusercontent.com/77028662/110724581-e2993380-81ca-11eb-9d06-184102896e3b.png)
+![RANK1](https://user-images.githubusercontent.com/77028662/110724582-e2993380-81ca-11eb-8fb9-7ec05d3ee02a.png)
+
+
+ 
+ 
+ ## Installation/Usage
+ Instructions on installing and running your application
+ The game is design to simply allow users to integrate into another program. Just simply include "board.hpp" and "Game.h" Make a new Game* f = new Game();
+  and call f->PrintMenu(f), it would handle the game internally. Remember to delete f once you finish the game.
+  
+ <img width="300" alt="Screen Shot 2021-03-10 at 5 52 36 PM" src="https://user-images.githubusercontent.com/77028662/110724628-fd6ba800-81ca-11eb-8899-f3f28deb2278.png">
+ 
+ 
+ ## Testing
+ How was your project tested/validated? If you used CI, you should have a "build passing" badge in this README.
+
+
+-We understood how the code should have worked, so at each step for the larger classes, we tested absolutely everything. Using unit tests we understood what the outcome of our program would be so we accounted for those in our unit tests. 
+
+-We heavily used unit_test to ensure everything was working properly as it should. We gave each implementation a test file to individually test each file. Not only that, but we also gave the game a special debug function which allowed us to make one of the players instantly win, so we can better debug the functionalities about Player class, for example, how to keep track of their win-rate or rank.
+
+-A total of 40 different tests shows that the program meets the standard and ready to be pre-released.  
+
+ ![Testing](https://user-images.githubusercontent.com/77028662/110723173-7fa69d00-81c8-11eb-8b4c-39f5bf4ed2e8.png)
+ ![0leak](https://user-images.githubusercontent.com/77028662/110726996-4d4c6e00-81cf-11eb-90fd-449d637a6c10.jpg)
+ ![656](https://user-images.githubusercontent.com/77028662/110727208-a6b49d00-81cf-11eb-968a-b5ec867b969e.jpg)
+![New test](https://user-images.githubusercontent.com/77028662/110724473-b4b3ef00-81ca-11eb-9355-0dc8e09fff2a.png)
+![New Test](https://media.discordapp.net/attachments/804492870441762817/819395155730628618/Screen_Shot_2021-03-10_at_6.22.23_PM.png?width=1210&height=915)
+
+
+
+
 **References:**\
 https://refactoring.guru/<br />
 https://en.wikipedia.org/wiki/Chess  <br />
 https://en.wikipedia.org/wiki/Chess_symbols_in_Unicode  <br />
- 
-
- > ## Final deliverable
- > All group members will give a demo to the TA during lab time. The TA will check the demo and the project GitHub repository and ask a few questions to all the team members. 
- > Before the demo, you should do the following:
- > * Complete the sections below (i.e. Screenshots, Installation/Usage, Testing)
- > * Plan one more sprint (that you will not necessarily complete before the end of the quarter). Your In-progress and In-testing columns should be empty (you are not doing more work currently) but your TODO column should have a full sprint plan in it as you have done before. This should include any known bugs (there should be some) or new features you would like to add. These should appear as issues/cards on your Kanban board. 
- 
- ## Screenshots
- > Screenshots of the input/output after running your application
- ## Installation/Usage
- > Instructions on installing and running your application
- ## Testing
- > How was your project tested/validated? If you used CI, you should have a "build passing" badge in this README.
- 
