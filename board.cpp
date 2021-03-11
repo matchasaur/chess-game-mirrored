@@ -116,7 +116,9 @@ void Board::move(Board*, Spot* startBox, Spot* endBox){
   MoveFactory f; 
   canMove* mover = f.make_canMove(start->getPiece()); 
   if(!mover->move(this, start, end)|| mover == nullptr){
+            delete history.top();
 			history.pop();
+			delete history.top();
 			history.pop();
 			std::cout << "Invalid move" << endl;
 		}
