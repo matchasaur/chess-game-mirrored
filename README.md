@@ -152,7 +152,7 @@ Tournament Mode:
  ## Testing
  How was your project tested/validated? If you used CI, you should have a "build passing" badge in this README.
  ![Testing](https://user-images.githubusercontent.com/77028662/110723173-7fa69d00-81c8-11eb-8b4c-39f5bf4ed2e8.png)
- ![528 Btes lost](https://user-images.githubusercontent.com/77028662/110723175-803f3380-81c8-11eb-94a4-5808bd5dd6c2.png)
+ ![48](https://user-images.githubusercontent.com/77028662/110725803-0e1d1d80-81cd-11eb-9dc2-28177b316816.png)
 ![New test](https://user-images.githubusercontent.com/77028662/110724473-b4b3ef00-81ca-11eb-9355-0dc8e09fff2a.png)
 
 
