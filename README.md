@@ -151,6 +151,14 @@ Tournament Mode:
  
  ## Testing
  How was your project tested/validated? If you used CI, you should have a "build passing" badge in this README.
+
+
+-We understood how the code should have worked, so at each step for the larger classes, we tested absolutely everything. Using unit tests we understood what the outcome of our program would be so we accounted for those in our unit tests. 
+
+-We heavily used unit_test to ensure everything was working properly as it should. We gave each implementation a test file to individually test each file. Not only that, but we also gave the game a special debug function which allowed us to make one of the players instantly win, so we can better debug the functionalities about Player class, for example, how to keep track of their win-rate or rank.
+
+-A total of 40 different tests shows that the program meets the standard and ready to be pre-released.  
+
  ![Testing](https://user-images.githubusercontent.com/77028662/110723173-7fa69d00-81c8-11eb-8b4c-39f5bf4ed2e8.png)
  ![48](https://user-images.githubusercontent.com/77028662/110725803-0e1d1d80-81cd-11eb-9dc2-28177b316816.png)
 ![New test](https://user-images.githubusercontent.com/77028662/110724473-b4b3ef00-81ca-11eb-9355-0dc8e09fff2a.png)
