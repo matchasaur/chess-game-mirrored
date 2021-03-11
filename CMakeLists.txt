@@ -11,6 +11,11 @@ ADD_EXECUTABLE(test
     Game.cpp    
 )
 
+ADD_EXECUTABLE(CHESS
+    main.cpp
+    board.cpp
+    Game.cpp    
+)
 TARGET_LINK_LIBRARIES(test gtest)
 TARGET_COMPILE_DEFINITIONS(test PRIVATE gtest_disable_pthreads=ON)
 
