@@ -145,6 +145,10 @@ Resetting the Board
 
 <img width="186" alt="Screen Shot 2021-03-10 at 5 52 36 PM" src="https://user-images.githubusercontent.com/77082321/110724616-f5ac0380-81ca-11eb-888a-b0d6db63a9a3.png">
 
+Tournament Mode:
+![RANK2](https://user-images.githubusercontent.com/77028662/110724581-e2993380-81ca-11eb-9d06-184102896e3b.png)
+![RANK1](https://user-images.githubusercontent.com/77028662/110724582-e2993380-81ca-11eb-8fb9-7ec05d3ee02a.png)
+
 
  
  
