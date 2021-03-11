@@ -135,6 +135,17 @@ https://en.wikipedia.org/wiki/Chess_symbols_in_Unicode  <br />
 ![Print Rules](https://user-images.githubusercontent.com/77028662/110723181-80d7ca00-81c8-11eb-837c-5e82773d70cb.png)
 ![Exit Game](https://user-images.githubusercontent.com/77028662/110723182-80d7ca00-81c8-11eb-932e-f4e13bb3c0a0.png)
 ![3PLAYERS](https://user-images.githubusercontent.com/77028662/110723183-81706080-81c8-11eb-8c24-af8abcfce077.png)
+Starting a game and Moving
+
+<img width="549" alt="Screen Shot 2021-03-10 at 5 41 40 PM" src="https://user-images.githubusercontent.com/77082321/110724435-9d750180-81ca-11eb-9fb3-1d0a2546fd78.png">
+Swaping sides and moving 
+
+<img width="549" alt="Screen Shot 2021-03-10 at 5 41 40 PM" src="https://user-images.githubusercontent.com/77082321/110724459-aa91f080-81ca-11eb-89d0-ba365d29f2e9.png">
+Resetting the Board
+
+<img width="186" alt="Screen Shot 2021-03-10 at 5 52 36 PM" src="https://user-images.githubusercontent.com/77082321/110724616-f5ac0380-81ca-11eb-888a-b0d6db63a9a3.png">
+
+
  
  
  ## Installation/Usage
@@ -146,3 +157,4 @@ https://en.wikipedia.org/wiki/Chess_symbols_in_Unicode  <br />
  How was your project tested/validated? If you used CI, you should have a "build passing" badge in this README.
  ![Testing](https://user-images.githubusercontent.com/77028662/110723173-7fa69d00-81c8-11eb-8b4c-39f5bf4ed2e8.png)
  ![528 Btes lost](https://user-images.githubusercontent.com/77028662/110723175-803f3380-81c8-11eb-94a4-5808bd5dd6c2.png)
+![New test](https://user-images.githubusercontent.com/77028662/110724473-b4b3ef00-81ca-11eb-9355-0dc8e09fff2a.png)
