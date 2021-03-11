@@ -122,16 +122,27 @@ https://en.wikipedia.org/wiki/Chess  <br />
 https://en.wikipedia.org/wiki/Chess_symbols_in_Unicode  <br />
  
 
- > ## Final deliverable
- > All group members will give a demo to the TA during lab time. The TA will check the demo and the project GitHub repository and ask a few questions to all the team members. 
- > Before the demo, you should do the following:
- > * Complete the sections below (i.e. Screenshots, Installation/Usage, Testing)
- > * Plan one more sprint (that you will not necessarily complete before the end of the quarter). Your In-progress and In-testing columns should be empty (you are not doing more work currently) but your TODO column should have a full sprint plan in it as you have done before. This should include any known bugs (there should be some) or new features you would like to add. These should appear as issues/cards on your Kanban board. 
+ ## Final deliverable
+ All group members will give a demo to the TA during lab time. The TA will check the demo and the project GitHub repository and ask a few questions to all the team members. 
+ Before the demo, you should do the following:
+ * Complete the sections below (i.e. Screenshots, Installation/Usage, Testing)
+ * Plan one more sprint (that you will not necessarily complete before the end of the quarter). Your In-progress and In-testing columns should be empty (you are not doing more work currently) but your TODO column should have a full sprint plan in it as you have done before. This should include any known bugs (there should be some) or new features you would like to add. These should appear as issues/cards on your Kanban board. 
  
  ## Screenshots
- > Screenshots of the input/output after running your application
- ## Installation/Usage
- > Instructions on installing and running your application
- ## Testing
- > How was your project tested/validated? If you used CI, you should have a "build passing" badge in this README.
+ Screenshots of the input/output after running your application
+![Normal GamePlay 1V1](https://user-images.githubusercontent.com/77028662/110723176-803f3380-81c8-11eb-9830-961b4f63be4b.png)
+![1V1 Game Win](https://user-images.githubusercontent.com/77028662/110723178-80d7ca00-81c8-11eb-85fd-a3db7c27c5c6.png)
+![Print Rules](https://user-images.githubusercontent.com/77028662/110723181-80d7ca00-81c8-11eb-837c-5e82773d70cb.png)
+![Exit Game](https://user-images.githubusercontent.com/77028662/110723182-80d7ca00-81c8-11eb-932e-f4e13bb3c0a0.png)
+![3PLAYERS](https://user-images.githubusercontent.com/77028662/110723183-81706080-81c8-11eb-8c24-af8abcfce077.png)
  
+ 
+ ## Installation/Usage
+ Instructions on installing and running your application
+ 
+ 
+ 
+ ## Testing
+ How was your project tested/validated? If you used CI, you should have a "build passing" badge in this README.
+ ![Testing](https://user-images.githubusercontent.com/77028662/110723173-7fa69d00-81c8-11eb-8b4c-39f5bf4ed2e8.png)
+ ![528 Btes lost](https://user-images.githubusercontent.com/77028662/110723175-803f3380-81c8-11eb-94a4-5808bd5dd6c2.png)
