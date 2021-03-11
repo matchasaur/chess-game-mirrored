@@ -108,19 +108,8 @@ Class Description:
 - The game itself is an interface with the user. Allowing them to play the game.
 
 
-
-
-
- 
 ## Phase III (Meeting With TA; Done)
 
-
- 
-**References:**\
-https://refactoring.guru/<br />
-https://en.wikipedia.org/wiki/Chess  <br />
-https://en.wikipedia.org/wiki/Chess_symbols_in_Unicode  <br />
- 
 
  ## Final deliverable
  All group members will give a demo to the TA during lab time. The TA will check the demo and the project GitHub repository and ask a few questions to all the team members. 
@@ -157,7 +146,7 @@ Tournament Mode:
  The game is design to simply allow users to integrate into another program. Just simply include "board.hpp" and "Game.h" Make a new Game* f = new Game();
   and call f->PrintMenu(f), it would handle the game internally. Remember to delete f once you finish the game.
   
- ![MAIN](https://user-images.githubusercontent.com/77028662/110724628-fd6ba800-81ca-11eb-8899-f3f28deb2278.png)
+ <img width="186" alt="Screen Shot 2021-03-10 at 5 52 36 PM" src="https://user-images.githubusercontent.com/77028662/110724628-fd6ba800-81ca-11eb-8899-f3f28deb2278.png">
  
  
  ## Testing
@@ -165,3 +154,10 @@ Tournament Mode:
  ![Testing](https://user-images.githubusercontent.com/77028662/110723173-7fa69d00-81c8-11eb-8b4c-39f5bf4ed2e8.png)
  ![528 Btes lost](https://user-images.githubusercontent.com/77028662/110723175-803f3380-81c8-11eb-94a4-5808bd5dd6c2.png)
 ![New test](https://user-images.githubusercontent.com/77028662/110724473-b4b3ef00-81ca-11eb-9355-0dc8e09fff2a.png)
+
+
+
+**References:**\
+https://refactoring.guru/<br />
+https://en.wikipedia.org/wiki/Chess  <br />
+https://en.wikipedia.org/wiki/Chess_symbols_in_Unicode  <br />
