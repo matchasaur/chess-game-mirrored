@@ -237,16 +237,9 @@ class PlayerList: public Player {
     size = 0;
   }
   ~PlayerList(){
-
-
-    /*
- *     for (auto s: GroupList) {
- *           if (s -> is_composit()) {
- *                   delete[] s;
- *                         } else {
- *                                 delete s;
- *                                       }
- *                                           } */
+      for (int i = 0; i < GroupList.size(); i++) {
+          delete GroupList.at(i);
+      }
   }
 
   string get_group_name() {
