@@ -287,7 +287,7 @@ pair < int, int > Game::getCoordinates(string coordinate) {
   file.insert(pair < char, int > ('f', 5));
   file.insert(pair < char, int > ('g', 6));
   file.insert(pair < char, int > ('h', 7));
-  xyCoordinates.first = 8 - (coordinate.at(1) - '0');
+  xyCoordinates.first = 8 - (tolower(coordinate.at(1)) - '0');
   xyCoordinates.second = file[coordinate.at(0)];
 
   return xyCoordinates;
